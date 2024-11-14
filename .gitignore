@@ -1,0 +1,56 @@
+# Project specific
+build/
+builds/
+cmake-build-*
+.idea
+
+# benchmark / simexpal
+benchmark/aux
+benchmark/builds
+benchmark/instances
+benchmark/eval_out
+benchmark/output
+benchmark/*.cache
+benchmark/*.status
+
+# scip log dir
+!logs/.gitkeep
+logs
+
+# mac
+.DS_Store
+
+# Python & jupyter
+.ipynb_checkpoints
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
