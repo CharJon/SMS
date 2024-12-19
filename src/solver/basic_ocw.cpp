@@ -181,8 +181,11 @@ std::vector<bool> BasicOcwSolver::solveRooted(const std::string &statsScip, cons
     auto pHeurKl = new PHeurKl(scip_, &graph_);
     SCIP_CALL_EXC(SCIPincludeObjHeur(scip_, pHeurKl, TRUE))
 
-    auto pHeurB = new PHeurBurer(scip_, &graph_, 0);
-    SCIP_CALL_EXC(SCIPincludeObjHeur(scip_, pHeurB, TRUE))
+    auto pHeurM = new PHeurMQLib(scip_, &graph_);
+    SCIP_CALL_EXC(SCIPincludeObjHeur(scip_, pHeurM, TRUE))
+
+    //auto pHeurB = new PHeurBurer(scip_, &graph_, 0);
+    //SCIP_CALL_EXC(SCIPincludeObjHeur(scip_, pHeurB, TRUE))
 
     // Add branching heuristic
     auto brachingDegreeBased = new BranchruleDegree(scip_);
