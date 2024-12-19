@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <iostream>
+#include <sms/pheur/pheur_mqlib.hpp>
 
 #include "networkit/auxiliary/Parallelism.hpp"
 #include "networkit/graph/Graph.hpp"
@@ -118,9 +119,10 @@ void solveInstanceCore(const sms::MaxCut &maxCutInstance, const CLParser &clArgs
                 double fraction = subGraphNumEdges / totalNumEdges;
                 auto totalRemainingTime = std::chrono::duration_cast<std::chrono::duration<double>>(remainingTime);
                 auto runtimeLimit = fraction * totalRemainingTime;
-                auto solver = sms::Burer(currentInstance.getGraph(), clArgs.getSeed());
+                auto solver = sms::HeuristicSolver(currentInstance.getGraph());
                 solver.setTimelimit(runtimeLimit);
-                solver.runRepeatedly();
+                //solver.runRepeatedly();
+                solver.run();
 
                 bestSolution = solver.getBestSolution();
                 optimalSolutionFound &= solver.optimalityProven();
