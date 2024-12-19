@@ -1,0 +1,7 @@
+# SCIP version 9.1.0
+
+branching/degree/priority = 10000000
+branching/degree/dynamic = FALSE
+branching/degree/tiebreak = FALSE
+branching/pscost/priority = 1
+branching/relpscost/priority = 1

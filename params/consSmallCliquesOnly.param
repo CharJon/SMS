@@ -1,0 +1,4 @@
+# SCIP version 9.1.0
+
+constraints/cliquecut/maxsubliquesize = 11
+constraints/cliquecut/sepacutpool = TRUE

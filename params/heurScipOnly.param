@@ -1,0 +1,3936 @@
+# SCIP version 9.1.0
+
+heuristics/kl/freq = -1
+heuristics/mst/freq = -1
+heuristics/bur02/freq = -1
+
+# reset all heuristic related parameter
+
+# priority of heuristic <actconsdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1003700]
+heuristics/actconsdiving/priority = -1003700
+
+# frequency for calling primal heuristic <actconsdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/actconsdiving/freq = -1
+
+# frequency offset for calling primal heuristic <actconsdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 5]
+heuristics/actconsdiving/freqofs = 5
+
+# maximal depth level to call primal heuristic <actconsdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/actconsdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/actconsdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/actconsdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/actconsdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/actconsdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/actconsdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/actconsdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/actconsdiving/maxdiveubquotnosol = 1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 1]
+heuristics/actconsdiving/maxdiveavgquotnosol = 1
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/actconsdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/actconsdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/actconsdiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/actconsdiving/onlylpbranchcands = TRUE
+
+# priority of heuristic <adaptivediving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -70000]
+heuristics/adaptivediving/priority = -70000
+
+# frequency for calling primal heuristic <adaptivediving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 5]
+heuristics/adaptivediving/freq = 5
+
+# frequency offset for calling primal heuristic <adaptivediving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 3]
+heuristics/adaptivediving/freqofs = 3
+
+# maximal depth level to call primal heuristic <adaptivediving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/adaptivediving/maxdepth = -1
+
+# parameter that increases probability of exploration among divesets (only active if seltype is 'e')
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 1]
+heuristics/adaptivediving/epsilon = 1
+
+# score parameter for selection: minimize either average 'n'odes, LP 'i'terations,backtrack/'c'onflict ratio, 'd'epth, 1 / 's'olutions, or 1 / solutions'u'ccess
+# [type: char, advanced: FALSE, range: {cdinsu}, default: c]
+heuristics/adaptivediving/scoretype = c
+
+# selection strategy: (e)psilon-greedy, (w)eighted distribution, (n)ext diving
+# [type: char, advanced: FALSE, range: {enw}, default: w]
+heuristics/adaptivediving/seltype = w
+
+# should the heuristic use its own statistics, or shared statistics?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/adaptivediving/useadaptivecontext = FALSE
+
+# coefficient c to decrease initial confidence (calls + 1.0) / (calls + c) in scores
+# [type: real, advanced: FALSE, range: [1,2147483647], default: 10]
+heuristics/adaptivediving/selconfidencecoeff = 10
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.1]
+heuristics/adaptivediving/maxlpiterquot = 0.1
+
+# additional number of allowed LP iterations
+# [type: longint, advanced: FALSE, range: [0,2147483647], default: 1500]
+heuristics/adaptivediving/maxlpiterofs = 1500
+
+# weight of incumbent solutions compared to other solutions in computation of LP iteration limit
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 10]
+heuristics/adaptivediving/bestsolweight = 10
+
+# priority of heuristic <bound>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1107000]
+heuristics/bound/priority = -1107000
+
+# frequency for calling primal heuristic <bound> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/bound/freq = -1
+
+# frequency offset for calling primal heuristic <bound>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/bound/freqofs = 0
+
+# maximal depth level to call primal heuristic <bound> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/bound/maxdepth = -1
+
+# Should heuristic only be executed if no primal solution was found, yet?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/bound/onlywithoutsol = TRUE
+
+# maximum number of propagation rounds during probing (-1 infinity, -2 parameter settings)
+# [type: int, advanced: TRUE, range: [-1,536870911], default: 0]
+heuristics/bound/maxproprounds = 0
+
+# to which bound should integer variables be fixed? ('l'ower, 'u'pper, or 'b'oth)
+# [type: char, advanced: FALSE, range: {lub}, default: l]
+heuristics/bound/bound = l
+
+# priority of heuristic <clique>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 5000]
+heuristics/clique/priority = 5000
+
+# frequency for calling primal heuristic <clique> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/clique/freq = 0
+
+# frequency offset for calling primal heuristic <clique>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/clique/freqofs = 0
+
+# maximal depth level to call primal heuristic <clique> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/clique/maxdepth = -1
+
+# minimum percentage of integer variables that have to be fixable
+# [type: real, advanced: FALSE, range: [0,1], default: 0.65]
+heuristics/clique/minintfixingrate = 0.65
+
+# minimum percentage of fixed variables in the sub-MIP
+# [type: real, advanced: FALSE, range: [0,1], default: 0.65]
+heuristics/clique/minmipfixingrate = 0.65
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/clique/maxnodes = 5000
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/clique/nodesofs = 500
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/clique/minnodes = 500
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/clique/nodesquot = 0.1
+
+# factor by which clique heuristic should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/clique/minimprove = 0.01
+
+# maximum number of propagation rounds during probing (-1 infinity)
+# [type: int, advanced: TRUE, range: [-1,536870911], default: 2]
+heuristics/clique/maxproprounds = 2
+
+# should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/clique/copycuts = TRUE
+
+# should more variables be fixed based on variable locks if the fixing rate was not reached?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/clique/uselockfixings = FALSE
+
+# maximum number of backtracks during the fixing process
+# [type: int, advanced: TRUE, range: [-1,536870911], default: 10]
+heuristics/clique/maxbacktracks = 10
+
+# priority of heuristic <coefdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1001000]
+heuristics/coefdiving/priority = -1001000
+
+# frequency for calling primal heuristic <coefdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/coefdiving/freq = -1
+
+# frequency offset for calling primal heuristic <coefdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 1]
+heuristics/coefdiving/freqofs = 1
+
+# maximal depth level to call primal heuristic <coefdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/coefdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/coefdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/coefdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/coefdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/coefdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/coefdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/coefdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/coefdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/coefdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/coefdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/coefdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/coefdiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/coefdiving/onlylpbranchcands = FALSE
+
+# priority of heuristic <completesol>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 0]
+heuristics/completesol/priority = 0
+
+# frequency for calling primal heuristic <completesol> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/completesol/freq = 0
+
+# frequency offset for calling primal heuristic <completesol>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/completesol/freqofs = 0
+
+# maximal depth level to call primal heuristic <completesol> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: 0]
+heuristics/completesol/maxdepth = 0
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/completesol/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/completesol/minnodes = 50
+
+# maximal rate of unknown solution values
+# [type: real, advanced: FALSE, range: [0,1], default: 0.85]
+heuristics/completesol/maxunknownrate = 0.85
+
+# should all subproblem solutions be added to the original SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/completesol/addallsols = FALSE
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/completesol/nodesofs = 500
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/completesol/nodesquot = 0.1
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 2]
+heuristics/completesol/lplimfac = 2
+
+# weight of the original objective function (1: only original objective)
+# [type: real, advanced: TRUE, range: [0.001,1], default: 1]
+heuristics/completesol/objweight = 1
+
+# bound widening factor applied to continuous variables (0: fix variables to given solution values, 1: relax to global bounds)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/completesol/boundwidening = 0.1
+
+# factor by which the incumbent should be improved at least
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/completesol/minimprove = 0.01
+
+# should number of continuous variables be ignored?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/completesol/ignorecont = FALSE
+
+# heuristic stops, if the given number of improving solutions were found (-1: no limit)
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 5]
+heuristics/completesol/solutions = 5
+
+# maximal number of iterations in propagation (-1: no limit)
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 10]
+heuristics/completesol/maxproprounds = 10
+
+# should the heuristic run before presolving?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/completesol/beforepresol = TRUE
+
+# maximal number of LP iterations (-1: no limit)
+# [type: longint, advanced: FALSE, range: [-1,9223372036854775807], default: -1]
+heuristics/completesol/maxlpiter = -1
+
+# maximal number of continuous variables after presolving
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+heuristics/completesol/maxcontvars = -1
+
+# priority of heuristic <conflictdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1000100]
+heuristics/conflictdiving/priority = -1000100
+
+# frequency for calling primal heuristic <conflictdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/conflictdiving/freq = 10
+
+# frequency offset for calling primal heuristic <conflictdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/conflictdiving/freqofs = 0
+
+# maximal depth level to call primal heuristic <conflictdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/conflictdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/conflictdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/conflictdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/conflictdiving/maxlpiterquot = 0.15
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/conflictdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/conflictdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/conflictdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/conflictdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/conflictdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/conflictdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/conflictdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/conflictdiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/conflictdiving/onlylpbranchcands = FALSE
+
+# try to maximize the violation
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/conflictdiving/maxviol = TRUE
+
+# perform rounding like coefficient diving
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/conflictdiving/likecoef = FALSE
+
+# minimal number of conflict locks per variable
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 5]
+heuristics/conflictdiving/minconflictlocks = 5
+
+# weight used in a convex combination of conflict and variable locks
+# [type: real, advanced: TRUE, range: [0,1], default: 0.75]
+heuristics/conflictdiving/lockweight = 0.75
+
+# priority of heuristic <crossover>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1104000]
+heuristics/crossover/priority = -1104000
+
+# frequency for calling primal heuristic <crossover> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 30]
+heuristics/crossover/freq = 30
+
+# frequency offset for calling primal heuristic <crossover>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/crossover/freqofs = 0
+
+# maximal depth level to call primal heuristic <crossover> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/crossover/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/crossover/nodesofs = 500
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/crossover/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/crossover/minnodes = 50
+
+# number of solutions to be taken into account
+# [type: int, advanced: FALSE, range: [2,2147483647], default: 3]
+heuristics/crossover/nusedsols = 3
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 200]
+heuristics/crossover/nwaitingnodes = 200
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/crossover/nodesquot = 0.1
+
+# minimum percentage of integer variables that have to be fixed
+# [type: real, advanced: FALSE, range: [0,1], default: 0.666]
+heuristics/crossover/minfixingrate = 0.666
+
+# factor by which Crossover should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/crossover/minimprove = 0.01
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 2]
+heuristics/crossover/lplimfac = 2
+
+# should the choice which sols to take be randomized?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/crossover/randomization = TRUE
+
+# should the nwaitingnodes parameter be ignored at the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/crossover/dontwaitatroot = FALSE
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/crossover/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/crossover/copycuts = TRUE
+
+# should the subproblem be permuted to increase diversification?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/crossover/permute = FALSE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+heuristics/crossover/bestsollimit = -1
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/crossover/useuct = FALSE
+
+# priority of heuristic <dins>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1105000]
+heuristics/dins/priority = -1105000
+
+# frequency for calling primal heuristic <dins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/dins/freq = -1
+
+# frequency offset for calling primal heuristic <dins>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/dins/freqofs = 0
+
+# maximal depth level to call primal heuristic <dins> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/dins/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 5000]
+heuristics/dins/nodesofs = 5000
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.05]
+heuristics/dins/nodesquot = 0.05
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 50]
+heuristics/dins/minnodes = 50
+
+# number of pool-solutions to be checked for flag array update (for hard fixing of binary variables)
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 5]
+heuristics/dins/solnum = 5
+
+# radius (using Manhattan metric) of the incumbent's neighborhood to be searched
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 18]
+heuristics/dins/neighborhoodsize = 18
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/dins/maxnodes = 5000
+
+# factor by which dins should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/dins/minimprove = 0.01
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 200]
+heuristics/dins/nwaitingnodes = 200
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 1.5]
+heuristics/dins/lplimfac = 1.5
+
+# minimum percentage of integer variables that have to be fixable
+# [type: real, advanced: FALSE, range: [0,1], default: 0.3]
+heuristics/dins/minfixingrate = 0.3
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dins/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/dins/copycuts = TRUE
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dins/useuct = FALSE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/dins/bestsollimit = 3
+
+# priority of heuristic <distributiondiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1003300]
+heuristics/distributiondiving/priority = -1003300
+
+# frequency for calling primal heuristic <distributiondiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/distributiondiving/freq = 10
+
+# frequency offset for calling primal heuristic <distributiondiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 3]
+heuristics/distributiondiving/freqofs = 3
+
+# maximal depth level to call primal heuristic <distributiondiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/distributiondiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/distributiondiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/distributiondiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/distributiondiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/distributiondiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/distributiondiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/distributiondiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/distributiondiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/distributiondiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/distributiondiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/distributiondiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/distributiondiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/distributiondiving/onlylpbranchcands = TRUE
+
+# the score;largest 'd'ifference, 'l'owest cumulative probability,'h'ighest c.p., 'v'otes lowest c.p., votes highest c.p.('w'), 'r'evolving
+# [type: char, advanced: TRUE, range: {lvdhwr}, default: r]
+heuristics/distributiondiving/scoreparam = r
+
+# priority of heuristic <dps>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 75000]
+heuristics/dps/priority = 75000
+
+# frequency for calling primal heuristic <dps> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/dps/freq = -1
+
+# frequency offset for calling primal heuristic <dps>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/dps/freqofs = 0
+
+# maximal depth level to call primal heuristic <dps> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/dps/maxdepth = -1
+
+# maximal number of iterations
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 50]
+heuristics/dps/maxiterations = 50
+
+# maximal linking score of used decomposition (equivalent to percentage of linking constraints)
+# [type: real, advanced: FALSE, range: [0,1], default: 1]
+heuristics/dps/maxlinkscore = 1
+
+# multiplier for absolute increase of penalty parameters (0: no increase)
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 100]
+heuristics/dps/penalty = 100
+
+# should the problem get reoptimized with the original objective function?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dps/reoptimize = FALSE
+
+# should solutions get reused in subproblems?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dps/reuse = FALSE
+
+# should strict limits for reoptimization be set?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/dps/reoptlimits = TRUE
+
+# should the heuristic run before or after the processing of the node? (0: before, 1: after, 2: both)
+# [type: int, advanced: FALSE, range: [0,2], default: 0]
+heuristics/dps/timing = 0
+
+# priority of heuristic <dualval>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -10]
+heuristics/dualval/priority = -10
+
+# frequency for calling primal heuristic <dualval> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/dualval/freq = -1
+
+# frequency offset for calling primal heuristic <dualval>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/dualval/freqofs = 0
+
+# maximal depth level to call primal heuristic <dualval> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/dualval/maxdepth = -1
+
+# exit if objective doesn't improve
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dualval/forceimprovements = FALSE
+
+# add constraint to ensure that discrete vars are improving
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/dualval/onlycheaper = TRUE
+
+# disable the heuristic if it was not called at a leaf of the B&B tree
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dualval/onlyleaves = FALSE
+
+# relax the indicator variables by introducing continuous copies
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dualval/relaxindicators = FALSE
+
+# relax the continous variables
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/dualval/relaxcontvars = FALSE
+
+# verblevel of the heuristic, default is 0 to display nothing
+# [type: int, advanced: FALSE, range: [0,4], default: 0]
+heuristics/dualval/heurverblevel = 0
+
+# verblevel of the nlp solver, can be 0 or 1
+# [type: int, advanced: FALSE, range: [0,1], default: 0]
+heuristics/dualval/nlpverblevel = 0
+
+# number of ranks that should be displayed when the heuristic is called
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 10]
+heuristics/dualval/rankvalue = 10
+
+# maximal number of recursive calls of the heuristic (if dynamicdepth is off)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 25]
+heuristics/dualval/maxcalls = 25
+
+# says if and how the recursion depth is computed at runtime
+# [type: int, advanced: FALSE, range: [0,1], default: 0]
+heuristics/dualval/dynamicdepth = 0
+
+# maximal number of variables that may have maximal rank, quit if there are more, turn off by setting -1
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 50]
+heuristics/dualval/maxequalranks = 50
+
+# minimal gap for which we still run the heuristic, if gap is less we return without doing anything
+# [type: real, advanced: FALSE, range: [0,100], default: 5]
+heuristics/dualval/mingap = 5
+
+# value added to objective of slack variables, must not be zero
+# [type: real, advanced: FALSE, range: [0.1,1e+20], default: 1]
+heuristics/dualval/lambdaslack = 1
+
+# scaling factor for the objective function
+# [type: real, advanced: FALSE, range: [0,1], default: 0]
+heuristics/dualval/lambdaobj = 0
+
+# priority of heuristic <farkasdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -900000]
+heuristics/farkasdiving/priority = -900000
+
+# frequency for calling primal heuristic <farkasdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/farkasdiving/freq = 10
+
+# frequency offset for calling primal heuristic <farkasdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/farkasdiving/freqofs = 0
+
+# maximal depth level to call primal heuristic <farkasdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/farkasdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/farkasdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/farkasdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/farkasdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/farkasdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/farkasdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/farkasdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/farkasdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/farkasdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/farkasdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/farkasdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1]
+heuristics/farkasdiving/lpsolvefreq = 1
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/farkasdiving/onlylpbranchcands = FALSE
+
+# should diving candidates be checked before running?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/farkasdiving/checkcands = FALSE
+
+# should the score be scaled?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/farkasdiving/scalescore = TRUE
+
+# should the heuristic only run within the tree if at least one solution was found at the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/farkasdiving/rootsuccess = TRUE
+
+# maximal occurance factor of an objective coefficient
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/farkasdiving/maxobjocc = 1
+
+# minimal objective dynamism (log) to run
+# [type: real, advanced: TRUE, range: [0,1e+20], default: 0.0001]
+heuristics/farkasdiving/objdynamism = 0.0001
+
+# scale score by [f]ractionality or [i]mpact on farkasproof
+# [type: char, advanced: TRUE, range: {fi}, default: i]
+heuristics/farkasdiving/scaletype = i
+
+# priority of heuristic <feaspump>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1000000]
+heuristics/feaspump/priority = -1000000
+
+# frequency for calling primal heuristic <feaspump> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 20]
+heuristics/feaspump/freq = 20
+
+# frequency offset for calling primal heuristic <feaspump>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/feaspump/freqofs = 0
+
+# maximal depth level to call primal heuristic <feaspump> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/feaspump/maxdepth = -1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.01]
+heuristics/feaspump/maxlpiterquot = 0.01
+
+# factor by which the regard of the objective is decreased in each round, 1.0 for dynamic
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/feaspump/objfactor = 0.1
+
+# initial weight of the objective function in the convex combination
+# [type: real, advanced: FALSE, range: [0,1], default: 1]
+heuristics/feaspump/alpha = 1
+
+# threshold difference for the convex parameter to perform perturbation
+# [type: real, advanced: FALSE, range: [0,1], default: 1]
+heuristics/feaspump/alphadiff = 1
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/feaspump/maxlpiterofs = 1000
+
+# total number of feasible solutions found up to which heuristic is called (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 10]
+heuristics/feaspump/maxsols = 10
+
+# maximal number of pumping loops (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 10000]
+heuristics/feaspump/maxloops = 10000
+
+# maximal number of pumping rounds without fractionality improvement (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 10]
+heuristics/feaspump/maxstallloops = 10
+
+# minimum number of random variables to flip, if a 1-cycle is encountered
+# [type: int, advanced: TRUE, range: [1,2147483647], default: 10]
+heuristics/feaspump/minflips = 10
+
+# maximum length of cycles to be checked explicitly in each round
+# [type: int, advanced: TRUE, range: [1,100], default: 3]
+heuristics/feaspump/cyclelength = 3
+
+# number of iterations until a random perturbation is forced
+# [type: int, advanced: TRUE, range: [1,2147483647], default: 100]
+heuristics/feaspump/perturbfreq = 100
+
+# radius (using Manhattan metric) of the neighborhood to be searched in stage 3
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 18]
+heuristics/feaspump/neighborhoodsize = 18
+
+# should the feasibility pump be called at root node before cut separation?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/feaspump/beforecuts = TRUE
+
+# should an iterative round-and-propagate scheme be used to find the integral points?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/feaspump/usefp20 = FALSE
+
+# should a random perturbation be performed if a feasible solution was found?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/feaspump/pertsolfound = TRUE
+
+# should we solve a local branching sub-MIP if no solution could be found?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/feaspump/stage3 = FALSE
+
+# should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/feaspump/copycuts = TRUE
+
+# priority of heuristic <fixandinfer>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -500000]
+heuristics/fixandinfer/priority = -500000
+
+# frequency for calling primal heuristic <fixandinfer> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/fixandinfer/freq = -1
+
+# frequency offset for calling primal heuristic <fixandinfer>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/fixandinfer/freqofs = 0
+
+# maximal depth level to call primal heuristic <fixandinfer> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/fixandinfer/maxdepth = -1
+
+# maximal number of propagation rounds in probing subproblems (-1: no limit, 0: auto)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 0]
+heuristics/fixandinfer/proprounds = 0
+
+# minimal number of fixings to apply before dive may be aborted
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 100]
+heuristics/fixandinfer/minfixings = 100
+
+# priority of heuristic <fracdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1003000]
+heuristics/fracdiving/priority = -1003000
+
+# frequency for calling primal heuristic <fracdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/fracdiving/freq = 10
+
+# frequency offset for calling primal heuristic <fracdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 3]
+heuristics/fracdiving/freqofs = 3
+
+# maximal depth level to call primal heuristic <fracdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/fracdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/fracdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/fracdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/fracdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/fracdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/fracdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/fracdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/fracdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/fracdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/fracdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/fracdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/fracdiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/fracdiving/onlylpbranchcands = FALSE
+
+# priority of heuristic <gins>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1103000]
+heuristics/gins/priority = -1103000
+
+# frequency for calling primal heuristic <gins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 20]
+heuristics/gins/freq = 20
+
+# frequency offset for calling primal heuristic <gins>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 8]
+heuristics/gins/freqofs = 8
+
+# maximal depth level to call primal heuristic <gins> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/gins/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 500]
+heuristics/gins/nodesofs = 500
+
+# maximum number of nodes to regard in the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 5000]
+heuristics/gins/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 50]
+heuristics/gins/minnodes = 50
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 100]
+heuristics/gins/nwaitingnodes = 100
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.15]
+heuristics/gins/nodesquot = 0.15
+
+# percentage of integer variables that have to be fixed
+# [type: real, advanced: FALSE, range: [1e-06,0.999999], default: 0.66]
+heuristics/gins/minfixingrate = 0.66
+
+# factor by which gins should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/gins/minimprove = 0.01
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/gins/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/gins/copycuts = TRUE
+
+# should continuous variables outside the neighborhoods be fixed?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/gins/fixcontvars = FALSE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/gins/bestsollimit = 3
+
+# maximum distance to selected variable to enter the subproblem, or -1 to select the distance that best approximates the minimum fixing rate from below
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/gins/maxdistance = 3
+
+# the reference point to compute the neighborhood potential: (r)oot, (l)ocal lp, or (p)seudo solution
+# [type: char, advanced: TRUE, range: {lpr}, default: r]
+heuristics/gins/potential = r
+
+# should the heuristic solve a sequence of sub-MIP's around the first selected variable
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/gins/userollinghorizon = TRUE
+
+# should dense constraints (at least as dense as 1 - minfixingrate) be ignored by connectivity graph?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/gins/relaxdenseconss = FALSE
+
+# limiting percentage for variables already used in sub-SCIPs to terminate rolling horizon approach
+# [type: real, advanced: TRUE, range: [0,1], default: 0.4]
+heuristics/gins/rollhorizonlimfac = 0.4
+
+# overlap of blocks between runs - 0.0: no overlap, 1.0: shift by only 1 block
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/gins/overlap = 0
+
+# should user decompositions be considered, if available?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/gins/usedecomp = TRUE
+
+# should user decompositions be considered for initial selection in rolling horizon, if available?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/gins/usedecomprollhorizon = FALSE
+
+# should random initial variable selection be used if decomposition was not successful?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/gins/useselfallback = TRUE
+
+# should blocks be treated consecutively (sorted by ascending label?)
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/gins/consecutiveblocks = TRUE
+
+# priority of heuristic <guideddiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1007000]
+heuristics/guideddiving/priority = -1007000
+
+# frequency for calling primal heuristic <guideddiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/guideddiving/freq = 10
+
+# frequency offset for calling primal heuristic <guideddiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 7]
+heuristics/guideddiving/freqofs = 7
+
+# maximal depth level to call primal heuristic <guideddiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/guideddiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/guideddiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/guideddiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/guideddiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/guideddiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/guideddiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/guideddiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/guideddiving/maxdiveubquotnosol = 1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 1]
+heuristics/guideddiving/maxdiveavgquotnosol = 1
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/guideddiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/guideddiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/guideddiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/guideddiving/onlylpbranchcands = FALSE
+
+# priority of heuristic <zeroobj>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 100]
+heuristics/zeroobj/priority = 100
+
+# frequency for calling primal heuristic <zeroobj> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/zeroobj/freq = -1
+
+# frequency offset for calling primal heuristic <zeroobj>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/zeroobj/freqofs = 0
+
+# maximal depth level to call primal heuristic <zeroobj> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: 0]
+heuristics/zeroobj/maxdepth = 0
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 1000]
+heuristics/zeroobj/maxnodes = 1000
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 100]
+heuristics/zeroobj/nodesofs = 100
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 100]
+heuristics/zeroobj/minnodes = 100
+
+# maximum number of LP iterations to be performed in the subproblem
+# [type: longint, advanced: TRUE, range: [-1,9223372036854775807], default: 5000]
+heuristics/zeroobj/maxlpiters = 5000
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/zeroobj/nodesquot = 0.1
+
+# factor by which zeroobj should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/zeroobj/minimprove = 0.01
+
+# should all subproblem solutions be added to the original SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/zeroobj/addallsols = FALSE
+
+# should heuristic only be executed if no primal solution was found, yet?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/zeroobj/onlywithoutsol = TRUE
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/zeroobj/useuct = FALSE
+
+# priority of heuristic <indicator>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -20200]
+heuristics/indicator/priority = -20200
+
+# frequency for calling primal heuristic <indicator> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/indicator/freq = 1
+
+# frequency offset for calling primal heuristic <indicator>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/indicator/freqofs = 0
+
+# maximal depth level to call primal heuristic <indicator> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/indicator/maxdepth = -1
+
+# whether the one-opt heuristic should be started
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/indicator/oneopt = FALSE
+
+# Try to improve other solutions by one-opt?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/indicator/improvesols = FALSE
+
+# priority of heuristic <indicatordiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -150000]
+heuristics/indicatordiving/priority = -150000
+
+# frequency for calling primal heuristic <indicatordiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/indicatordiving/freq = 0
+
+# frequency offset for calling primal heuristic <indicatordiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/indicatordiving/freqofs = 0
+
+# maximal depth level to call primal heuristic <indicatordiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/indicatordiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/indicatordiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/indicatordiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/indicatordiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/indicatordiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/indicatordiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/indicatordiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/indicatordiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/indicatordiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/indicatordiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/indicatordiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 30]
+heuristics/indicatordiving/lpsolvefreq = 30
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/indicatordiving/onlylpbranchcands = FALSE
+
+# in violation case all fractional below this value are fixed to constant
+# [type: real, advanced: FALSE, range: [0,1], default: 0.5]
+heuristics/indicatordiving/roundingfrac = 0.5
+
+# decides which roundingmode is selected (0: conservative, 1: aggressive)
+# [type: int, advanced: FALSE, range: [0,1], default: 0]
+heuristics/indicatordiving/roundingmode = 0
+
+# which values of semi-continuous variables should get a high score? (0: low, 1: middle, 2: high)
+# [type: int, advanced: FALSE, range: [0,2], default: 0]
+heuristics/indicatordiving/semicontscoremode = 0
+
+# should varbound constraints be considered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/indicatordiving/usevarbounds = TRUE
+
+# should heur run if there are no indicator constraints modeling semicont. vars?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/indicatordiving/runwithoutscinds = FALSE
+
+# priority of heuristic <intdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1003500]
+heuristics/intdiving/priority = -1003500
+
+# frequency for calling primal heuristic <intdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/intdiving/freq = -1
+
+# frequency offset for calling primal heuristic <intdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 9]
+heuristics/intdiving/freqofs = 9
+
+# maximal depth level to call primal heuristic <intdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/intdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/intdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/intdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/intdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/intdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/intdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/intdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/intdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/intdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/intdiving/backtrack = TRUE
+
+# priority of heuristic <intshifting>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -10000]
+heuristics/intshifting/priority = -10000
+
+# frequency for calling primal heuristic <intshifting> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/intshifting/freq = 10
+
+# frequency offset for calling primal heuristic <intshifting>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/intshifting/freqofs = 0
+
+# maximal depth level to call primal heuristic <intshifting> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/intshifting/maxdepth = -1
+
+# priority of heuristic <linesearchdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1006000]
+heuristics/linesearchdiving/priority = -1006000
+
+# frequency for calling primal heuristic <linesearchdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/linesearchdiving/freq = 10
+
+# frequency offset for calling primal heuristic <linesearchdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 6]
+heuristics/linesearchdiving/freqofs = 6
+
+# maximal depth level to call primal heuristic <linesearchdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/linesearchdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/linesearchdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/linesearchdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/linesearchdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/linesearchdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/linesearchdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/linesearchdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/linesearchdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/linesearchdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/linesearchdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/linesearchdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/linesearchdiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/linesearchdiving/onlylpbranchcands = FALSE
+
+# priority of heuristic <localbranching>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1102000]
+heuristics/localbranching/priority = -1102000
+
+# frequency for calling primal heuristic <localbranching> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/localbranching/freq = -1
+
+# frequency offset for calling primal heuristic <localbranching>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/localbranching/freqofs = 0
+
+# maximal depth level to call primal heuristic <localbranching> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/localbranching/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/localbranching/nodesofs = 1000
+
+# radius (using Manhattan metric) of the incumbent's neighborhood to be searched
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 18]
+heuristics/localbranching/neighborhoodsize = 18
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.05]
+heuristics/localbranching/nodesquot = 0.05
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 1.5]
+heuristics/localbranching/lplimfac = 1.5
+
+# minimum number of nodes required to start the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 1000]
+heuristics/localbranching/minnodes = 1000
+
+# maximum number of nodes to regard in the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 10000]
+heuristics/localbranching/maxnodes = 10000
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 200]
+heuristics/localbranching/nwaitingnodes = 200
+
+# factor by which localbranching should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/localbranching/minimprove = 0.01
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/localbranching/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/localbranching/copycuts = TRUE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/localbranching/bestsollimit = 3
+
+# priority of heuristic <locks>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 3000]
+heuristics/locks/priority = 3000
+
+# frequency for calling primal heuristic <locks> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/locks/freq = 0
+
+# frequency offset for calling primal heuristic <locks>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/locks/freqofs = 0
+
+# maximal depth level to call primal heuristic <locks> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/locks/maxdepth = -1
+
+# maximum number of propagation rounds to be performed in each propagation call (-1: no limit, -2: parameter settings)
+# [type: int, advanced: TRUE, range: [-2,2147483647], default: 2]
+heuristics/locks/maxproprounds = 2
+
+# minimum percentage of integer variables that have to be fixable
+# [type: real, advanced: FALSE, range: [0,1], default: 0.65]
+heuristics/locks/minfixingrate = 0.65
+
+# probability for rounding a variable up in case of ties
+# [type: real, advanced: FALSE, range: [0,1], default: 0.67]
+heuristics/locks/roundupprobability = 0.67
+
+# should a final sub-MIP be solved to costruct a feasible solution if the LP was not roundable?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/locks/usefinalsubmip = TRUE
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/locks/maxnodes = 5000
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/locks/nodesofs = 500
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/locks/minnodes = 500
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/locks/nodesquot = 0.1
+
+# factor by which locks heuristic should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/locks/minimprove = 0.01
+
+# should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/locks/copycuts = TRUE
+
+# should the locks be updated based on LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/locks/updatelocks = TRUE
+
+# minimum fixing rate over all variables (including continuous) to solve LP
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/locks/minfixingratelp = 0
+
+# priority of heuristic <lpface>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1104010]
+heuristics/lpface/priority = -1104010
+
+# frequency for calling primal heuristic <lpface> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 15]
+heuristics/lpface/freq = 15
+
+# frequency offset for calling primal heuristic <lpface>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/lpface/freqofs = 0
+
+# maximal depth level to call primal heuristic <lpface> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/lpface/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 200]
+heuristics/lpface/nodesofs = 200
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/lpface/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/lpface/minnodes = 50
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/lpface/nodesquot = 0.1
+
+# required percentage of fixed integer variables in sub-MIP to run
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/lpface/minfixingrate = 0.1
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 2]
+heuristics/lpface/lplimfac = 2
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/lpface/uselprows = TRUE
+
+# should dually nonbasic rows be turned into equations?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/lpface/dualbasisequations = FALSE
+
+# should the heuristic continue solving the same sub-SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/lpface/keepsubscip = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/lpface/copycuts = TRUE
+
+# objective function in the sub-SCIP: (z)ero, (r)oot-LP-difference, (i)nference, LP (f)ractionality, (o)riginal
+# [type: char, advanced: TRUE, range: {forzi}, default: z]
+heuristics/lpface/subscipobjective = z
+
+# the minimum active search tree path length along which lower bound hasn't changed before heuristic becomes active
+# [type: int, advanced: TRUE, range: [0,65531], default: 5]
+heuristics/lpface/minpathlen = 5
+
+# priority of heuristic <alns>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1100500]
+heuristics/alns/priority = -1100500
+
+# frequency for calling primal heuristic <alns> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 20]
+heuristics/alns/freq = 20
+
+# frequency offset for calling primal heuristic <alns>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/alns/freqofs = 0
+
+# maximal depth level to call primal heuristic <alns> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/alns/maxdepth = -1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/rens/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/rens/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/rens/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/rens/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/rins/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/rins/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/rins/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/rins/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/mutation/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/mutation/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/mutation/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/mutation/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/localbranching/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/localbranching/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/localbranching/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/localbranching/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/crossover/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/crossover/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/crossover/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/crossover/priority = 1
+
+# the number of solutions that crossover should combine
+# [type: int, advanced: TRUE, range: [2,10], default: 2]
+heuristics/alns/crossover/nsols = 2
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/proximity/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/proximity/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/proximity/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/proximity/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/zeroobjective/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/zeroobjective/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/zeroobjective/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/zeroobjective/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/dins/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/dins/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/dins/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/dins/priority = 1
+
+# number of pool solutions where binary solution values must agree
+# [type: int, advanced: TRUE, range: [1,100], default: 5]
+heuristics/alns/dins/npoolsols = 5
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/alns/trustregion/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/alns/trustregion/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/trustregion/active = FALSE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/alns/trustregion/priority = 1
+
+# the penalty for each change in the binary variables from the candidate solution
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 100]
+heuristics/alns/trustregion/violpenalty = 100
+
+# show statistics on neighborhoods?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/shownbstats = FALSE
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/alns/maxnodes = 5000
+
+# offset added to the nodes budget
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/alns/nodesofs = 500
+
+# minimum number of nodes required to start a sub-SCIP
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/alns/minnodes = 50
+
+# number of nodes since last incumbent solution that the heuristic should wait
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 25]
+heuristics/alns/waitingnodes = 25
+
+# fraction of nodes compared to the main SCIP for budget computation
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/alns/nodesquot = 0.1
+
+# lower bound fraction of nodes compared to the main SCIP for budget computation
+# [type: real, advanced: FALSE, range: [0,1], default: 0]
+heuristics/alns/nodesquotmin = 0
+
+# initial factor by which ALNS should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/alns/startminimprove = 0.01
+
+# lower threshold for the minimal improvement over the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/alns/minimprovelow = 0.01
+
+# upper bound for the minimal improvement over the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/alns/minimprovehigh = 0.01
+
+# limit on the number of improving solutions in a sub-SCIP call
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/alns/nsolslim = 3
+
+# the bandit algorithm: (u)pper confidence bounds, (e)xp.3, epsilon (g)reedy, exp.3-(i)x
+# [type: char, advanced: TRUE, range: {uegi}, default: i]
+heuristics/alns/banditalgo = i
+
+# weight between uniform (gamma ~ 1) and weight driven (gamma ~ 0) probability distribution for exp3
+# [type: real, advanced: TRUE, range: [0,1], default: 0.07041455]
+heuristics/alns/gamma = 0.07041455
+
+# reward offset between 0 and 1 at every observation for Exp.3
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/alns/beta = 0
+
+# parameter to increase the confidence width in UCB
+# [type: real, advanced: TRUE, range: [0,100], default: 0.0016]
+heuristics/alns/alpha = 0.0016
+
+# distances from fixed variables be used for variable prioritization
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/usedistances = TRUE
+
+# should reduced cost scores be used for variable prioritization?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/useredcost = TRUE
+
+# should the ALNS heuristic do more fixings by itself based on variable prioritization until the target fixing rate is reached?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/domorefixings = TRUE
+
+# should the heuristic adjust the target fixing rate based on the success?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/adjustfixingrate = TRUE
+
+# should the heuristic activate other sub-SCIP heuristics during its search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/usesubscipheurs = FALSE
+
+# reward control to increase the weight of the simple solution indicator and decrease the weight of the closed gap reward
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/alns/rewardcontrol = 0.8
+
+# factor by which target node number is eventually increased
+# [type: real, advanced: TRUE, range: [1,100000], default: 1.05]
+heuristics/alns/targetnodefactor = 1.05
+
+# initial random seed for bandit algorithms and random decisions by neighborhoods
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 113]
+heuristics/alns/seed = 113
+
+# number of allowed executions of the heuristic on the same incumbent solution (-1: no limit, 0: number of active neighborhoods)
+# [type: int, advanced: TRUE, range: [-1,100], default: -1]
+heuristics/alns/maxcallssamesol = -1
+
+# should the factor by which the minimum improvement is bound be dynamically updated?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/adjustminimprove = FALSE
+
+# should the target nodes be dynamically adjusted?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/adjusttargetnodes = TRUE
+
+# increase exploration in epsilon-greedy bandit algorithm
+# [type: real, advanced: TRUE, range: [0,1], default: 0.4685844]
+heuristics/alns/eps = 0.4685844
+
+# the reward baseline to separate successful and failed calls
+# [type: real, advanced: TRUE, range: [0,0.99], default: 0.5]
+heuristics/alns/rewardbaseline = 0.5
+
+# should the bandit algorithms be reset when a new problem is read?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/resetweights = TRUE
+
+# file name to store all rewards and the selection of the bandit
+# [type: string, advanced: TRUE, default: "-"]
+heuristics/alns/rewardfilename = "-"
+
+# should random seeds of sub-SCIPs be altered to increase diversification?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/subsciprandseeds = FALSE
+
+# should the reward be scaled by the effort?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/scalebyeffort = TRUE
+
+# should cutting planes be copied to the sub-SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/copycuts = FALSE
+
+# tolerance by which the fixing rate may be missed without generic fixing
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/alns/fixtol = 0.1
+
+# tolerance by which the fixing rate may be exceeded without generic unfixing
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/alns/unfixtol = 0.1
+
+# should local reduced costs be used for generic (un)fixing?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/uselocalredcost = FALSE
+
+# should pseudo cost scores be used for variable priorization?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/alns/usepscost = TRUE
+
+# should the heuristic be executed multiple times during the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/alns/initduringroot = FALSE
+
+# is statistics table <neighborhood> active
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+table/neighborhood/active = TRUE
+
+# priority of heuristic <nlpdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1003010]
+heuristics/nlpdiving/priority = -1003010
+
+# frequency for calling primal heuristic <nlpdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/nlpdiving/freq = 10
+
+# frequency offset for calling primal heuristic <nlpdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 3]
+heuristics/nlpdiving/freqofs = 3
+
+# maximal depth level to call primal heuristic <nlpdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/nlpdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/nlpdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/nlpdiving/maxreldepth = 1
+
+# minimial absolute number of allowed NLP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 200]
+heuristics/nlpdiving/maxnlpiterabs = 200
+
+# additional allowed number of NLP iterations relative to successfully found solutions
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 10]
+heuristics/nlpdiving/maxnlpiterrel = 10
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/nlpdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/nlpdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/nlpdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/nlpdiving/maxdiveavgquotnosol = 0
+
+# maximal number of NLPs with feasible solution to solve during one dive
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 10]
+heuristics/nlpdiving/maxfeasnlps = 10
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/nlpdiving/backtrack = TRUE
+
+# should the LP relaxation be solved before the NLP relaxation?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/nlpdiving/lp = FALSE
+
+# prefer variables that are also fractional in LP solution?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/nlpdiving/preferlpfracs = FALSE
+
+# heuristic will not run if less then this percentage of calls succeeded (0.0: no limit)
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/nlpdiving/minsuccquot = 0.1
+
+# percentage of fractional variables that should be fixed before the next NLP solve
+# [type: real, advanced: FALSE, range: [0,1], default: 0.2]
+heuristics/nlpdiving/fixquot = 0.2
+
+# should variables in a minimal cover be preferred?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/nlpdiving/prefercover = TRUE
+
+# should a sub-MIP be solved if all cover variables are fixed?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/nlpdiving/solvesubmip = FALSE
+
+# should the NLP solver stop early if it converges slow?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/nlpdiving/nlpfastfail = TRUE
+
+# which point should be used as starting point for the NLP solver? ('n'one, last 'f'easible, from dive's'tart)
+# [type: char, advanced: TRUE, range: {fns}, default: s]
+heuristics/nlpdiving/nlpstart = s
+
+# which variable selection should be used? ('f'ractionality, 'c'oefficient, 'p'seudocost, 'g'uided, 'd'ouble, 'v'eclen)
+# [type: char, advanced: FALSE, range: {fcpgdv}, default: d]
+heuristics/nlpdiving/varselrule = d
+
+# priority of heuristic <mutation>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1103010]
+heuristics/mutation/priority = -1103010
+
+# frequency for calling primal heuristic <mutation> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/mutation/freq = -1
+
+# frequency offset for calling primal heuristic <mutation>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 8]
+heuristics/mutation/freqofs = 8
+
+# maximal depth level to call primal heuristic <mutation> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/mutation/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 500]
+heuristics/mutation/nodesofs = 500
+
+# maximum number of nodes to regard in the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 5000]
+heuristics/mutation/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 500]
+heuristics/mutation/minnodes = 500
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 200]
+heuristics/mutation/nwaitingnodes = 200
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/mutation/nodesquot = 0.1
+
+# percentage of integer variables that have to be fixed
+# [type: real, advanced: FALSE, range: [1e-06,0.999999], default: 0.8]
+heuristics/mutation/minfixingrate = 0.8
+
+# factor by which mutation should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/mutation/minimprove = 0.01
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/mutation/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/mutation/copycuts = TRUE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+heuristics/mutation/bestsollimit = -1
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/mutation/useuct = FALSE
+
+# priority of heuristic <multistart>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -2100000]
+heuristics/multistart/priority = -2100000
+
+# frequency for calling primal heuristic <multistart> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/multistart/freq = 0
+
+# frequency offset for calling primal heuristic <multistart>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/multistart/freqofs = 0
+
+# maximal depth level to call primal heuristic <multistart> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/multistart/maxdepth = -1
+
+# number of random points generated per execution call
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 100]
+heuristics/multistart/nrndpoints = 100
+
+# maximum variable domain size for unbounded variables
+# [type: real, advanced: FALSE, range: [0,1e+20], default: 20000]
+heuristics/multistart/maxboundsize = 20000
+
+# number of iterations to reduce the maximum violation of a point
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 300]
+heuristics/multistart/maxiter = 300
+
+# minimum required improving factor to proceed in improvement of a single point
+# [type: real, advanced: FALSE, range: [-1e+20,1e+20], default: 0.05]
+heuristics/multistart/minimprfac = 0.05
+
+# number of iteration when checking the minimum improvement
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 10]
+heuristics/multistart/minimpriter = 10
+
+# maximum distance between two points in the same cluster
+# [type: real, advanced: FALSE, range: [0,1e+20], default: 0.15]
+heuristics/multistart/maxreldist = 0.15
+
+# limit for gradient computations for all improvePoint() calls (0 for no limit)
+# [type: real, advanced: FALSE, range: [0,1e+20], default: 5000000]
+heuristics/multistart/gradlimit = 5000000
+
+# maximum number of considered clusters per heuristic call
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 3]
+heuristics/multistart/maxncluster = 3
+
+# should the heuristic run only on continuous problems?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/multistart/onlynlps = TRUE
+
+# priority of heuristic <mpec>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -2050000]
+heuristics/mpec/priority = -2050000
+
+# frequency for calling primal heuristic <mpec> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 50]
+heuristics/mpec/freq = 50
+
+# frequency offset for calling primal heuristic <mpec>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/mpec/freqofs = 0
+
+# maximal depth level to call primal heuristic <mpec> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/mpec/maxdepth = -1
+
+# initial regularization right-hand side value
+# [type: real, advanced: FALSE, range: [0,0.25], default: 0.125]
+heuristics/mpec/inittheta = 0.125
+
+# regularization update factor
+# [type: real, advanced: FALSE, range: [0,1], default: 0.5]
+heuristics/mpec/sigma = 0.5
+
+# maximum number of NLP iterations per solve
+# [type: real, advanced: FALSE, range: [0,1], default: 0.001]
+heuristics/mpec/subnlptrigger = 0.001
+
+# maximum cost available for solving NLPs per call of the heuristic
+# [type: real, advanced: FALSE, range: [0,1e+20], default: 100000000]
+heuristics/mpec/maxnlpcost = 100000000
+
+# factor by which heuristic should at least improve the incumbent
+# [type: real, advanced: FALSE, range: [0,1], default: 0.01]
+heuristics/mpec/minimprove = 0.01
+
+# minimum amount of gap left in order to call the heuristic
+# [type: real, advanced: FALSE, range: [0,1e+20], default: 0.05]
+heuristics/mpec/mingapleft = 0.05
+
+# maximum number of iterations of the MPEC loop
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 100]
+heuristics/mpec/maxiter = 100
+
+# maximum number of NLP iterations per solve
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 500]
+heuristics/mpec/maxnlpiter = 500
+
+# maximum number of consecutive calls for which the heuristic did not find an improving solution
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 10]
+heuristics/mpec/maxnunsucc = 10
+
+# priority of heuristic <objpscostdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1004000]
+heuristics/objpscostdiving/priority = -1004000
+
+# frequency for calling primal heuristic <objpscostdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 20]
+heuristics/objpscostdiving/freq = 20
+
+# frequency offset for calling primal heuristic <objpscostdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 4]
+heuristics/objpscostdiving/freqofs = 4
+
+# maximal depth level to call primal heuristic <objpscostdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/objpscostdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/objpscostdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/objpscostdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to total iteration number
+# [type: real, advanced: FALSE, range: [0,1], default: 0.01]
+heuristics/objpscostdiving/maxlpiterquot = 0.01
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/objpscostdiving/maxlpiterofs = 1000
+
+# total number of feasible solutions found up to which heuristic is called (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: -1]
+heuristics/objpscostdiving/maxsols = -1
+
+# maximal diving depth: number of binary/integer variables times depthfac
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0.5]
+heuristics/objpscostdiving/depthfac = 0.5
+
+# maximal diving depth factor if no feasible solution was found yet
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 2]
+heuristics/objpscostdiving/depthfacnosol = 2
+
+# priority of heuristic <octane>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1008000]
+heuristics/octane/priority = -1008000
+
+# frequency for calling primal heuristic <octane> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/octane/freq = -1
+
+# frequency offset for calling primal heuristic <octane>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/octane/freqofs = 0
+
+# maximal depth level to call primal heuristic <octane> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/octane/maxdepth = -1
+
+# number of 0-1-points to be tested as possible solutions by OCTANE
+# [type: int, advanced: TRUE, range: [1,2147483647], default: 100]
+heuristics/octane/fmax = 100
+
+# number of 0-1-points to be tested at first whether they violate a common row
+# [type: int, advanced: TRUE, range: [1,2147483647], default: 10]
+heuristics/octane/ffirst = 10
+
+# execute OCTANE only in the space of fractional variables (TRUE) or in the full space?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/octane/usefracspace = TRUE
+
+# should the inner normal of the objective be used as one ray direction?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/octane/useobjray = TRUE
+
+# should the average of the basic cone be used as one ray direction?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/octane/useavgray = TRUE
+
+# should the difference between the root solution and the current LP solution be used as one ray direction?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/octane/usediffray = FALSE
+
+# should the weighted average of the basic cone be used as one ray direction?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/octane/useavgwgtray = TRUE
+
+# should the weighted average of the nonbasic cone be used as one ray direction?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/octane/useavgnbray = TRUE
+
+# priority of heuristic <ofins>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 60000]
+heuristics/ofins/priority = 60000
+
+# frequency for calling primal heuristic <ofins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/ofins/freq = 0
+
+# frequency offset for calling primal heuristic <ofins>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/ofins/freqofs = 0
+
+# maximal depth level to call primal heuristic <ofins> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: 0]
+heuristics/ofins/maxdepth = 0
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/ofins/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/ofins/minnodes = 50
+
+# maximal rate of changed coefficients
+# [type: real, advanced: FALSE, range: [0,1], default: 0.5]
+heuristics/ofins/maxchangerate = 0.5
+
+# maximal rate of change per coefficient to get fixed
+# [type: real, advanced: FALSE, range: [0,1], default: 0.04]
+heuristics/ofins/maxchange = 0.04
+
+# should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/ofins/copycuts = TRUE
+
+# should all subproblem solutions be added to the original SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/ofins/addallsols = FALSE
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/ofins/nodesofs = 500
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/ofins/nodesquot = 0.1
+
+# factor by which RENS should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/ofins/minimprove = 0.01
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 2]
+heuristics/ofins/lplimfac = 2
+
+# priority of heuristic <oneopt>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -20000]
+heuristics/oneopt/priority = -20000
+
+# frequency for calling primal heuristic <oneopt> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/oneopt/freq = 1
+
+# frequency offset for calling primal heuristic <oneopt>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/oneopt/freqofs = 0
+
+# maximal depth level to call primal heuristic <oneopt> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/oneopt/maxdepth = -1
+
+# should the objective be weighted with the potential shifting value when sorting the shifting candidates?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/oneopt/weightedobj = TRUE
+
+# should the heuristic be called before and during the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/oneopt/duringroot = TRUE
+
+# should the construction of the LP be forced even if LP solving is deactivated?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/oneopt/forcelpconstruction = FALSE
+
+# should the heuristic be called before presolving?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/oneopt/beforepresol = FALSE
+
+# should the heuristic continue to run as long as improvements are found?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/oneopt/useloop = TRUE
+
+# priority of heuristic <padm>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 70000]
+heuristics/padm/priority = 70000
+
+# frequency for calling primal heuristic <padm> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/padm/freq = 0
+
+# frequency offset for calling primal heuristic <padm>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/padm/freqofs = 0
+
+# maximal depth level to call primal heuristic <padm> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/padm/maxdepth = -1
+
+# maximum number of nodes to regard in all subproblems
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/padm/maxnodes = 5000
+
+# minimum number of nodes to regard in one subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/padm/minnodes = 50
+
+# factor to control nodelimits of subproblems
+# [type: real, advanced: TRUE, range: [0,0.99], default: 0.8]
+heuristics/padm/nodefac = 0.8
+
+# maximal number of ADM iterations in each penalty loop
+# [type: int, advanced: TRUE, range: [1,100], default: 4]
+heuristics/padm/admiterations = 4
+
+# maximal number of penalty iterations
+# [type: int, advanced: TRUE, range: [1,100000], default: 100]
+heuristics/padm/penaltyiterations = 100
+
+# mipgap at start
+# [type: real, advanced: TRUE, range: [0,16], default: 2]
+heuristics/padm/gap = 2
+
+# should the problem get reoptimized with the original objective function?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/padm/reoptimize = TRUE
+
+# enable sigmoid rescaling of penalty parameters
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/padm/scaling = TRUE
+
+# should linking constraints be assigned?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/padm/assignlinking = TRUE
+
+# should the original problem be used? This is only for testing and not recommended!
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/padm/original = FALSE
+
+# should the heuristic run before or after the processing of the node? (0: before, 1: after, 2: both)
+# [type: int, advanced: FALSE, range: [0,2], default: 0]
+heuristics/padm/timing = 0
+
+# priority of heuristic <proximity>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -2000000]
+heuristics/proximity/priority = -2000000
+
+# frequency for calling primal heuristic <proximity> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/proximity/freq = -1
+
+# frequency offset for calling primal heuristic <proximity>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/proximity/freqofs = 0
+
+# maximal depth level to call primal heuristic <proximity> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/proximity/maxdepth = -1
+
+# should subproblem be constructed based on LP row information?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/proximity/uselprows = FALSE
+
+# should the heuristic immediately run again on its newly found solution?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/proximity/restart = TRUE
+
+# should the heuristic solve a final LP in case of continuous objective variables?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/proximity/usefinallp = FALSE
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 10000]
+heuristics/proximity/maxnodes = 10000
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/proximity/nodesofs = 50
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 1]
+heuristics/proximity/minnodes = 1
+
+# maximum number of LP iterations to be performed in the subproblem
+# [type: longint, advanced: TRUE, range: [-1,9223372036854775807], default: 100000]
+heuristics/proximity/maxlpiters = 100000
+
+# minimum number of LP iterations performed in subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 200]
+heuristics/proximity/minlpiters = 200
+
+# waiting nodes since last incumbent before heuristic is executed
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 100]
+heuristics/proximity/waitingnodes = 100
+
+# factor by which proximity should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.02]
+heuristics/proximity/minimprove = 0.02
+
+# sub-MIP node limit w.r.t number of original nodes
+# [type: real, advanced: TRUE, range: [0,1e+20], default: 0.1]
+heuristics/proximity/nodesquot = 0.1
+
+# threshold for percentage of binary variables required to start
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/proximity/binvarquot = 0.1
+
+# quotient of sub-MIP LP iterations with respect to LP iterations so far
+# [type: real, advanced: TRUE, range: [0,1], default: 0.2]
+heuristics/proximity/lpitersquot = 0.2
+
+# minimum primal-dual gap for which the heuristic is executed
+# [type: real, advanced: TRUE, range: [0,1e+20], default: 0.01]
+heuristics/proximity/mingap = 0.01
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/proximity/useuct = FALSE
+
+# priority of heuristic <pscostdiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1002000]
+heuristics/pscostdiving/priority = -1002000
+
+# frequency for calling primal heuristic <pscostdiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/pscostdiving/freq = 10
+
+# frequency offset for calling primal heuristic <pscostdiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 2]
+heuristics/pscostdiving/freqofs = 2
+
+# maximal depth level to call primal heuristic <pscostdiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/pscostdiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/pscostdiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/pscostdiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/pscostdiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/pscostdiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/pscostdiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/pscostdiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/pscostdiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/pscostdiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/pscostdiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/pscostdiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/pscostdiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/pscostdiving/onlylpbranchcands = TRUE
+
+# priority of heuristic <randrounding>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -200]
+heuristics/randrounding/priority = -200
+
+# frequency for calling primal heuristic <randrounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 20]
+heuristics/randrounding/freq = 20
+
+# frequency offset for calling primal heuristic <randrounding>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/randrounding/freqofs = 0
+
+# maximal depth level to call primal heuristic <randrounding> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/randrounding/maxdepth = -1
+
+# should the heuristic only be called once per node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/randrounding/oncepernode = FALSE
+
+# should the heuristic apply the variable lock strategy of simple rounding, if possible?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/randrounding/usesimplerounding = FALSE
+
+# should the probing part of the heuristic be applied exclusively at the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/randrounding/propagateonlyroot = TRUE
+
+# limit of rounds for each propagation call
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 1]
+heuristics/randrounding/maxproprounds = 1
+
+# priority of heuristic <rens>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1100000]
+heuristics/rens/priority = -1100000
+
+# frequency for calling primal heuristic <rens> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/rens/freq = 0
+
+# frequency offset for calling primal heuristic <rens>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/rens/freqofs = 0
+
+# maximal depth level to call primal heuristic <rens> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/rens/maxdepth = -1
+
+# minimum percentage of integer variables that have to be fixable
+# [type: real, advanced: FALSE, range: [0,1], default: 0.5]
+heuristics/rens/minfixingrate = 0.5
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/rens/maxnodes = 5000
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/rens/nodesofs = 500
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/rens/minnodes = 50
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/rens/nodesquot = 0.1
+
+# factor by which RENS should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/rens/minimprove = 0.01
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 2]
+heuristics/rens/lplimfac = 2
+
+# solution that is used for fixing values ('l'p relaxation, 'n'lp relaxation)
+# [type: char, advanced: FALSE, range: {nl}, default: l]
+heuristics/rens/startsol = l
+
+# should general integers get binary bounds [floor(.),ceil(.)] ?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/rens/binarybounds = TRUE
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rens/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/rens/copycuts = TRUE
+
+# should the RENS sub-CIP get its own full time limit? This is only for testing and not recommended!
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rens/extratime = FALSE
+
+# should all subproblem solutions be added to the original SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rens/addallsols = FALSE
+
+# should the RENS sub-CIP be solved with cuts, conflicts, strong branching,... This is only for testing and not recommended!
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rens/fullscale = FALSE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+heuristics/rens/bestsollimit = -1
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rens/useuct = FALSE
+
+# priority of heuristic <reoptsols>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 40000]
+heuristics/reoptsols/priority = 40000
+
+# frequency for calling primal heuristic <reoptsols> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/reoptsols/freq = 0
+
+# frequency offset for calling primal heuristic <reoptsols>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/reoptsols/freqofs = 0
+
+# maximal depth level to call primal heuristic <reoptsols> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: 0]
+heuristics/reoptsols/maxdepth = 0
+
+# maximal number solutions which should be checked. (-1: all)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 1000]
+heuristics/reoptsols/maxsols = 1000
+
+# check solutions of the last k runs. (-1: all)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: -1]
+heuristics/reoptsols/maxruns = -1
+
+# priority of heuristic <repair>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -20]
+heuristics/repair/priority = -20
+
+# frequency for calling primal heuristic <repair> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/repair/freq = -1
+
+# frequency offset for calling primal heuristic <repair>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/repair/freqofs = 0
+
+# maximal depth level to call primal heuristic <repair> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/repair/maxdepth = -1
+
+# file name of a solution to be used as infeasible starting point, [-] if not available
+# [type: string, advanced: FALSE, default: "-"]
+heuristics/repair/filename = "-"
+
+# True : fractional variables which are not fractional in the given solution are rounded, FALSE : solving process of this heuristic is stopped.
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/repair/roundit = TRUE
+
+# should a scaled objective function for original variables be used in repair subproblem?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/repair/useobjfactor = FALSE
+
+# should variable fixings be used in repair subproblem?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/repair/usevarfix = TRUE
+
+# should slack variables be used in repair subproblem?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/repair/useslackvars = FALSE
+
+# factor for the potential of var fixings
+# [type: real, advanced: TRUE, range: [0,100], default: 2]
+heuristics/repair/alpha = 2
+
+# number of nodes added to the contingent of the total nodes
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 500]
+heuristics/repair/nodesofs = 500
+
+# maximum number of nodes to regard in the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 5000]
+heuristics/repair/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 50]
+heuristics/repair/minnodes = 50
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/repair/nodesquot = 0.1
+
+# minimum percentage of integer variables that have to be fixed
+# [type: real, advanced: FALSE, range: [0,1], default: 0.3]
+heuristics/repair/minfixingrate = 0.3
+
+# priority of heuristic <rins>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1101000]
+heuristics/rins/priority = -1101000
+
+# frequency for calling primal heuristic <rins> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 25]
+heuristics/rins/freq = 25
+
+# frequency offset for calling primal heuristic <rins>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/rins/freqofs = 0
+
+# maximal depth level to call primal heuristic <rins> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/rins/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 500]
+heuristics/rins/nodesofs = 500
+
+# maximum number of nodes to regard in the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 5000]
+heuristics/rins/maxnodes = 5000
+
+# minimum number of nodes required to start the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 50]
+heuristics/rins/minnodes = 50
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.3]
+heuristics/rins/nodesquot = 0.3
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 200]
+heuristics/rins/nwaitingnodes = 200
+
+# factor by which rins should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/rins/minimprove = 0.01
+
+# minimum percentage of integer variables that have to be fixed
+# [type: real, advanced: FALSE, range: [0,1], default: 0.3]
+heuristics/rins/minfixingrate = 0.3
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 2]
+heuristics/rins/lplimfac = 2
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rins/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/rins/copycuts = TRUE
+
+# should uct node selection be used at the beginning of the search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rins/useuct = FALSE
+
+# priority of heuristic <rootsoldiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1005000]
+heuristics/rootsoldiving/priority = -1005000
+
+# frequency for calling primal heuristic <rootsoldiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 20]
+heuristics/rootsoldiving/freq = 20
+
+# frequency offset for calling primal heuristic <rootsoldiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 5]
+heuristics/rootsoldiving/freqofs = 5
+
+# maximal depth level to call primal heuristic <rootsoldiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/rootsoldiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/rootsoldiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/rootsoldiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.01]
+heuristics/rootsoldiving/maxlpiterquot = 0.01
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/rootsoldiving/maxlpiterofs = 1000
+
+# total number of feasible solutions found up to which heuristic is called (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: -1]
+heuristics/rootsoldiving/maxsols = -1
+
+# maximal diving depth: number of binary/integer variables times depthfac
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0.5]
+heuristics/rootsoldiving/depthfac = 0.5
+
+# maximal diving depth factor if no feasible solution was found yet
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 2]
+heuristics/rootsoldiving/depthfacnosol = 2
+
+# soft rounding factor to fade out objective coefficients
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/rootsoldiving/alpha = 0.9
+
+# priority of heuristic <rounding>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1000]
+heuristics/rounding/priority = -1000
+
+# frequency for calling primal heuristic <rounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/rounding/freq = 1
+
+# frequency offset for calling primal heuristic <rounding>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/rounding/freqofs = 0
+
+# maximal depth level to call primal heuristic <rounding> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/rounding/maxdepth = -1
+
+# number of calls per found solution that are considered as standard success, a higher factor causes the heuristic to be called more often
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 100]
+heuristics/rounding/successfactor = 100
+
+# should the heuristic only be called once per node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/rounding/oncepernode = FALSE
+
+# priority of heuristic <scheduler>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -30000]
+heuristics/scheduler/priority = -30000
+
+# frequency for calling primal heuristic <scheduler> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/scheduler/freq = -1
+
+# frequency offset for calling primal heuristic <scheduler>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/scheduler/freqofs = 0
+
+# maximal depth level to call primal heuristic <scheduler> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/scheduler/maxdepth = -1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/rens/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/rens/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/rens/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/rens/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/rins/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/rins/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/rins/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/rins/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/mutation/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/mutation/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/mutation/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/mutation/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/localbranching/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/localbranching/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/localbranching/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/localbranching/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/crossover/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/crossover/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/crossover/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/crossover/priority = 1
+
+# the number of solutions that crossover should combine
+# [type: int, advanced: TRUE, range: [2,10], default: 2]
+heuristics/scheduler/crossover/nsols = 2
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/proximity/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/proximity/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/proximity/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/proximity/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/zeroobjective/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/zeroobjective/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/zeroobjective/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/zeroobjective/priority = 1
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/dins/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/dins/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/dins/active = TRUE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/dins/priority = 1
+
+# number of pool solutions where binary solution values must agree
+# [type: int, advanced: TRUE, range: [1,100], default: 5]
+heuristics/scheduler/dins/npoolsols = 5
+
+# minimum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/trustregion/minfixingrate = 0.3
+
+# maximum fixing rate for this neighborhood
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/scheduler/trustregion/maxfixingrate = 0.9
+
+# is this neighborhood active?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/trustregion/active = FALSE
+
+# positive call priority to initialize bandit algorithms
+# [type: real, advanced: TRUE, range: [0.01,1], default: 1]
+heuristics/scheduler/trustregion/priority = 1
+
+# the penalty for each change in the binary variables from the candidate solution
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 100]
+heuristics/scheduler/trustregion/violpenalty = 100
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/scheduler/maxnodes = 500
+
+# offset added to the nodes budget
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/scheduler/nodesofs = 500
+
+# minimum number of nodes required to start a sub-SCIP
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 50]
+heuristics/scheduler/minnodes = 50
+
+# number of nodes since last incumbent solution that the heuristic should wait
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 0]
+heuristics/scheduler/waitingnodes = 0
+
+# initial node limit for LNS heuristics
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 50]
+heuristics/scheduler/initlnsnodelimit = 50
+
+# initial node limit for diving heuristics
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/scheduler/initdivingnodelimit = 500
+
+# fraction of nodes compared to the main SCIP for budget computation
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/scheduler/nodesquot = 0.1
+
+# lower bound fraction of nodes compared to the main SCIP for budget computation
+# [type: real, advanced: FALSE, range: [0,1], default: 0]
+heuristics/scheduler/nodesquotmin = 0
+
+# limit on the number of improving solutions in a sub-SCIP call
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/scheduler/nsolslim = 3
+
+# the bandit algorithm: (u)pper confidence bounds, (e)xp.3, epsilon (g)reedy, exp.3-(i)x
+# [type: char, advanced: TRUE, range: {uegi}, default: i]
+heuristics/scheduler/banditalgo = i
+
+# weight between uniform (gamma ~ 1) and weight driven (gamma ~ 0) probability distribution for exp3
+# [type: real, advanced: TRUE, range: [0,1], default: 0.07041455]
+heuristics/scheduler/gamma = 0.07041455
+
+# reward offset between 0 and 1 at every observation for Exp.3
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/scheduler/beta = 0
+
+# parameter to increase the confidence width in UCB
+# [type: real, advanced: TRUE, range: [0,100], default: 0.0016]
+heuristics/scheduler/alpha = 0.0016
+
+# distances from fixed variables be used for variable prioritization
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/usedistances = TRUE
+
+# should reduced cost scores be used for variable prioritization?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/useredcost = TRUE
+
+# should pseudo cost scores be used for variable priorization?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/usepscost = TRUE
+
+# should local reduced costs be used for generic (un)fixing?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/uselocalredcost = FALSE
+
+# should the heuristic activate other sub-SCIP heuristics during its search?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/usesubscipheurs = FALSE
+
+# factor by which target node number is eventually increased
+# [type: real, advanced: TRUE, range: [1,100000], default: 1.05]
+heuristics/scheduler/targetnodefactor = 1.05
+
+# initial random seed for bandit algorithms and random decisions by neighborhoods
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 113]
+heuristics/scheduler/seed = 113
+
+# number of allowed executions of the heuristic on the same incumbent solution (-1: no limit, 0: number of active neighborhoods)
+# [type: int, advanced: TRUE, range: [-1,100], default: -1]
+heuristics/scheduler/maxcallssamesol = -1
+
+# increase exploration in epsilon-greedy bandit algorithm
+# [type: real, advanced: TRUE, range: [0,1], default: 0.4685844]
+heuristics/scheduler/eps = 0.4685844
+
+# TRUE if modified version of the epsilon-greedy bandit algorithm should be used
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/epsgreedy_usemod = TRUE
+
+# weight by how much finding a new incumbent is rewarded in reward function
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/solrewardweight = 0.3
+
+# weight by how much effort is rewarded in reward function
+# [type: real, advanced: TRUE, range: [0,1], default: 0.2]
+heuristics/scheduler/effortrewardweight = 0.2
+
+# weight by how much quality of a new incumbent is rewarded in reward function
+# [type: real, advanced: TRUE, range: [0,1], default: 0.3]
+heuristics/scheduler/qualrewardweight = 0.3
+
+# weight by how much number of conflicts found by diving is rewarded in reward function
+# [type: real, advanced: TRUE, range: [0,1], default: 0.2]
+heuristics/scheduler/conflictrewardweight = 0.2
+
+# should the bandit algorithms be reset when a new problem is read?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/resetweights = FALSE
+
+# should random seeds of sub-SCIPs be altered to increase diversification?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/subsciprandseeds = FALSE
+
+# should cutting planes be copied to the sub-SCIP?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/copycuts = FALSE
+
+# tolerance by which the fixing rate may be missed without generic fixing
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/scheduler/fixtol = 0.1
+
+# tolerance by which the fixing rate may be exceeded without generic unfixing
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/scheduler/unfixtol = 0.1
+
+# time limit for a single heuristic run
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 60]
+heuristics/scheduler/heurtimelimit = 60
+
+# should the heuristic be executed multiple times during the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/scheduler/initduringroot = FALSE
+
+# should the default priorities be used at the root node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/scheduler/defaultroot = TRUE
+
+# number of heuristics picked by the scheduler in one call (-1: number of controlled heuristics, 0: until new incumbent is found)
+# [type: int, advanced: TRUE, range: [-1,100], default: 5]
+heuristics/scheduler/nselections = 5
+
+# is statistics table <scheduler> active
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+table/scheduler/active = TRUE
+
+# priority of heuristic <shiftandpropagate>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 1000]
+heuristics/shiftandpropagate/priority = 1000
+
+# frequency for calling primal heuristic <shiftandpropagate> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/shiftandpropagate/freq = 0
+
+# frequency offset for calling primal heuristic <shiftandpropagate>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/shiftandpropagate/freqofs = 0
+
+# maximal depth level to call primal heuristic <shiftandpropagate> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/shiftandpropagate/maxdepth = -1
+
+# The number of propagation rounds used for each propagation
+# [type: int, advanced: TRUE, range: [-1,1000], default: 10]
+heuristics/shiftandpropagate/nproprounds = 10
+
+# Should continuous variables be relaxed?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/relax = TRUE
+
+# Should domains be reduced by probing?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/probing = TRUE
+
+# Should heuristic only be executed if no primal solution was found, yet?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/onlywithoutsol = TRUE
+
+# The number of cutoffs before heuristic stops
+# [type: int, advanced: TRUE, range: [-1,1000000], default: 15]
+heuristics/shiftandpropagate/cutoffbreaker = 15
+
+# the key for variable sorting: (n)orms down, norms (u)p, (v)iolations down, viola(t)ions up, or (r)andom
+# [type: char, advanced: TRUE, range: {nrtuv}, default: v]
+heuristics/shiftandpropagate/sortkey = v
+
+# Should variables be sorted for the heuristic?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/sortvars = TRUE
+
+# should variable statistics be collected during probing?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/collectstats = TRUE
+
+# Should the heuristic stop calculating optimal shift values when no more rows are violated?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/stopafterfeasible = TRUE
+
+# Should binary variables be shifted first?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/preferbinaries = TRUE
+
+# should variables with a zero shifting value be delayed instead of being fixed?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/shiftandpropagate/nozerofixing = FALSE
+
+# should binary variables with no locks in one direction be fixed to that direction?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/fixbinlocks = TRUE
+
+# should binary variables with no locks be preferred in the ordering?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/shiftandpropagate/binlocksfirst = FALSE
+
+# should coefficients and left/right hand sides be normalized by max row coeff?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/normalize = TRUE
+
+# should row weight be increased every time the row is violated?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/shiftandpropagate/updateweights = FALSE
+
+# should implicit integer variables be treated as continuous variables?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/shiftandpropagate/impliscontinuous = TRUE
+
+# should the heuristic choose the best candidate in every round? (set to FALSE for static order)?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/shiftandpropagate/selectbest = FALSE
+
+# maximum percentage of allowed cutoffs before stopping the heuristic
+# [type: real, advanced: TRUE, range: [0,2], default: 0]
+heuristics/shiftandpropagate/maxcutoffquot = 0
+
+# minimum fixing rate over all variables (including continuous) to solve LP
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/shiftandpropagate/minfixingratelp = 0
+
+# priority of heuristic <shifting>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -5000]
+heuristics/shifting/priority = -5000
+
+# frequency for calling primal heuristic <shifting> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/shifting/freq = 10
+
+# frequency offset for calling primal heuristic <shifting>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/shifting/freqofs = 0
+
+# maximal depth level to call primal heuristic <shifting> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/shifting/maxdepth = -1
+
+# priority of heuristic <simplerounding>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -30]
+heuristics/simplerounding/priority = -30
+
+# frequency for calling primal heuristic <simplerounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/simplerounding/freq = 1
+
+# frequency offset for calling primal heuristic <simplerounding>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/simplerounding/freqofs = 0
+
+# maximal depth level to call primal heuristic <simplerounding> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/simplerounding/maxdepth = -1
+
+# should the heuristic only be called once per node?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/simplerounding/oncepernode = FALSE
+
+# priority of heuristic <subnlp>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -2000010]
+heuristics/subnlp/priority = -2000010
+
+# frequency for calling primal heuristic <subnlp> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/subnlp/freq = 1
+
+# frequency offset for calling primal heuristic <subnlp>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/subnlp/freqofs = 0
+
+# maximal depth level to call primal heuristic <subnlp> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/subnlp/maxdepth = -1
+
+# verbosity level of NLP solver
+# [type: int, advanced: FALSE, range: [0,65535], default: 0]
+heuristics/subnlp/nlpverblevel = 0
+
+# number of nodes added to the current number of nodes when computing itercontingent (higher value runs heuristic more often in early search)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1600]
+heuristics/subnlp/nodesoffset = 1600
+
+# factor on number of nodes in SCIP (plus nodesoffset) to compute itercontingent (higher value runs heuristics more frequently)
+# [type: real, advanced: FALSE, range: [0,1e+20], default: 0.3]
+heuristics/subnlp/nodesfactor = 0.3
+
+# exponent for power of success rate to be multiplied with itercontingent (lower value decreases impact of success rate)
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 1]
+heuristics/subnlp/successrateexp = 1
+
+# number of iterations used for initial NLP solves
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 300]
+heuristics/subnlp/iterinit = 300
+
+# number of successful NLP solves until switching to iterlimit guess and using success rate
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 2]
+heuristics/subnlp/ninitsolves = 2
+
+# minimal number of iterations for NLP solves
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 20]
+heuristics/subnlp/itermin = 20
+
+# absolute optimality tolerance to use for NLP solves
+# [type: real, advanced: TRUE, range: [0,1], default: 1e-07]
+heuristics/subnlp/opttol = 1e-07
+
+# factor on SCIP feasibility tolerance for NLP solves if resolving when NLP solution not feasible in CIP
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/subnlp/feastolfactor = 0.1
+
+# limit on number of presolve rounds in sub-SCIP (-1 for unlimited, 0 for no presolve)
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: -1]
+heuristics/subnlp/maxpresolverounds = -1
+
+# presolve emphasis in sub-SCIP (0: default, 1: aggressive, 2: fast, 3: off)
+# [type: int, advanced: FALSE, range: [0,3], default: 2]
+heuristics/subnlp/presolveemphasis = 2
+
+# whether to set cutoff in sub-SCIP to current primal bound
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/subnlp/setcutoff = TRUE
+
+# whether to add constraints that forbid specific fixings that turned out to be infeasible
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/subnlp/forbidfixings = FALSE
+
+# whether to keep SCIP copy or to create new copy each time heuristic is applied
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/subnlp/keepcopy = TRUE
+
+# percentage of NLP solves with infeasible status required to tell NLP solver to expect an infeasible NLP
+# [type: real, advanced: FALSE, range: [0,1], default: 0]
+heuristics/subnlp/expectinfeas = 0
+
+# priority of heuristic <trivial>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 10000]
+heuristics/trivial/priority = 10000
+
+# frequency for calling primal heuristic <trivial> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/trivial/freq = 0
+
+# frequency offset for calling primal heuristic <trivial>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/trivial/freqofs = 0
+
+# maximal depth level to call primal heuristic <trivial> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/trivial/maxdepth = -1
+
+# priority of heuristic <trivialnegation>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 39990]
+heuristics/trivialnegation/priority = 39990
+
+# frequency for calling primal heuristic <trivialnegation> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/trivialnegation/freq = 0
+
+# frequency offset for calling primal heuristic <trivialnegation>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/trivialnegation/freqofs = 0
+
+# maximal depth level to call primal heuristic <trivialnegation> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: 0]
+heuristics/trivialnegation/maxdepth = 0
+
+# priority of heuristic <trustregion>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1102010]
+heuristics/trustregion/priority = -1102010
+
+# frequency for calling primal heuristic <trustregion> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/trustregion/freq = -1
+
+# frequency offset for calling primal heuristic <trustregion>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/trustregion/freqofs = 0
+
+# maximal depth level to call primal heuristic <trustregion> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/trustregion/maxdepth = -1
+
+# number of nodes added to the contingent of the total nodes
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/trustregion/nodesofs = 1000
+
+# the number of binary variables necessary to run the heuristic
+# [type: int, advanced: FALSE, range: [1,2147483647], default: 10]
+heuristics/trustregion/minbinvars = 10
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.05]
+heuristics/trustregion/nodesquot = 0.05
+
+# factor by which the limit on the number of LP depends on the node limit
+# [type: real, advanced: TRUE, range: [1,1.79769313486232e+308], default: 1.5]
+heuristics/trustregion/lplimfac = 1.5
+
+# minimum number of nodes required to start the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 100]
+heuristics/trustregion/minnodes = 100
+
+# maximum number of nodes to regard in the subproblem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 10000]
+heuristics/trustregion/maxnodes = 10000
+
+# number of nodes without incumbent change that heuristic should wait
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 1]
+heuristics/trustregion/nwaitingnodes = 1
+
+# should subproblem be created out of the rows in the LP rows?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/trustregion/uselprows = FALSE
+
+# if uselprows == FALSE, should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/trustregion/copycuts = TRUE
+
+# limit on number of improving incumbent solutions in sub-CIP
+# [type: int, advanced: FALSE, range: [-1,2147483647], default: 3]
+heuristics/trustregion/bestsollimit = 3
+
+# the penalty for each change in the binary variables from the candidate solution
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 100]
+heuristics/trustregion/violpenalty = 100
+
+# the minimum absolute improvement in the objective function value
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.01]
+heuristics/trustregion/objminimprove = 0.01
+
+# priority of heuristic <trysol>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -3000010]
+heuristics/trysol/priority = -3000010
+
+# frequency for calling primal heuristic <trysol> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/trysol/freq = 1
+
+# frequency offset for calling primal heuristic <trysol>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/trysol/freqofs = 0
+
+# maximal depth level to call primal heuristic <trysol> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/trysol/maxdepth = -1
+
+# priority of heuristic <twoopt>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -20100]
+heuristics/twoopt/priority = -20100
+
+# frequency for calling primal heuristic <twoopt> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: -1]
+heuristics/twoopt/freq = -1
+
+# frequency offset for calling primal heuristic <twoopt>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/twoopt/freqofs = 0
+
+# maximal depth level to call primal heuristic <twoopt> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/twoopt/maxdepth = -1
+
+#  Should Integer-2-Optimization be applied or not?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/twoopt/intopt = FALSE
+
+# user parameter to determine number of nodes to wait after last best solution before calling heuristic
+# [type: int, advanced: TRUE, range: [0,10000], default: 0]
+heuristics/twoopt/waitingnodes = 0
+
+# maximum number of slaves for one master variable
+# [type: int, advanced: TRUE, range: [-1,1000000], default: 199]
+heuristics/twoopt/maxnslaves = 199
+
+# parameter to determine the percentage of rows two variables have to share before they are considered equal
+# [type: real, advanced: TRUE, range: [0,1], default: 0.5]
+heuristics/twoopt/matchingrate = 0.5
+
+# priority of heuristic <undercover>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1110000]
+heuristics/undercover/priority = -1110000
+
+# frequency for calling primal heuristic <undercover> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/undercover/freq = 0
+
+# frequency offset for calling primal heuristic <undercover>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/undercover/freqofs = 0
+
+# maximal depth level to call primal heuristic <undercover> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/undercover/maxdepth = -1
+
+# prioritized sequence of fixing values used ('l'p relaxation, 'n'lp relaxation, 'i'ncumbent solution)
+# [type: string, advanced: FALSE, default: "li"]
+heuristics/undercover/fixingalts = "li"
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/undercover/maxnodes = 500
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/undercover/minnodes = 500
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/undercover/nodesofs = 500
+
+# weight for conflict score in fixing order
+# [type: real, advanced: TRUE, range: [-1.79769313486232e+308,1.79769313486232e+308], default: 1000]
+heuristics/undercover/conflictweight = 1000
+
+# weight for cutoff score in fixing order
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 1]
+heuristics/undercover/cutoffweight = 1
+
+# weight for inference score in fixing order
+# [type: real, advanced: TRUE, range: [-1.79769313486232e+308,1.79769313486232e+308], default: 1]
+heuristics/undercover/inferenceweight = 1
+
+# maximum coversize (as fraction of total number of variables)
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/undercover/maxcoversizevars = 1
+
+# maximum coversize (as ratio to the percentage of non-affected constraints)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 1.79769313486232e+308]
+heuristics/undercover/maxcoversizeconss = 1.79769313486232e+308
+
+# minimum percentage of nonlinear constraints in the original problem
+# [type: real, advanced: TRUE, range: [0,1], default: 0.15]
+heuristics/undercover/mincoveredrel = 0.15
+
+# factor by which the heuristic should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [-1,1], default: 0]
+heuristics/undercover/minimprove = 0
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/undercover/nodesquot = 0.1
+
+# fraction of covering variables in the last cover which need to change their value when recovering
+# [type: real, advanced: TRUE, range: [0,1], default: 0.9]
+heuristics/undercover/recoverdiv = 0.9
+
+# minimum number of nonlinear constraints in the original problem
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 5]
+heuristics/undercover/mincoveredabs = 5
+
+# maximum number of backtracks in fix-and-propagate
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 6]
+heuristics/undercover/maxbacktracks = 6
+
+# maximum number of recoverings
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 0]
+heuristics/undercover/maxrecovers = 0
+
+# maximum number of reorderings of the fixing order
+# [type: int, advanced: TRUE, range: [0,2147483647], default: 1]
+heuristics/undercover/maxreorders = 1
+
+# objective function of the covering problem (influenced nonlinear 'c'onstraints/'t'erms, 'd'omain size, 'l'ocks, 'm'in of up/down locks, 'u'nit penalties)
+# [type: char, advanced: TRUE, range: {cdlmtu}, default: u]
+heuristics/undercover/coveringobj = u
+
+# order in which variables should be fixed (increasing 'C'onflict score, decreasing 'c'onflict score, increasing 'V'ariable index, decreasing 'v'ariable index
+# [type: char, advanced: TRUE, range: {CcVv}, default: v]
+heuristics/undercover/fixingorder = v
+
+# should the heuristic be called at root node before cut separation?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/undercover/beforecuts = TRUE
+
+# should integer variables in the cover be fixed first?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/undercover/fixintfirst = FALSE
+
+# shall LP values for integer vars be rounded according to locks?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/undercover/locksrounding = TRUE
+
+# should we only fix variables in order to obtain a convex problem?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/undercover/onlyconvexify = FALSE
+
+# should the NLP heuristic be called to polish a feasible solution?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/undercover/postnlp = TRUE
+
+# should and constraints be covered (or just copied)?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/undercover/coverand = TRUE
+
+# should bounddisjunction constraints be covered (or just copied)?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/undercover/coverbd = FALSE
+
+# should indicator constraints be covered (or just copied)?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/undercover/coverind = FALSE
+
+# should nonlinear constraints be covered (or just copied)?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/undercover/covernl = TRUE
+
+# should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/undercover/copycuts = TRUE
+
+# shall the cover be reused if a conflict was added after an infeasible subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/undercover/reusecover = FALSE
+
+# priority of heuristic <vbounds>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: 2500]
+heuristics/vbounds/priority = 2500
+
+# frequency for calling primal heuristic <vbounds> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 0]
+heuristics/vbounds/freq = 0
+
+# frequency offset for calling primal heuristic <vbounds>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/vbounds/freqofs = 0
+
+# maximal depth level to call primal heuristic <vbounds> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/vbounds/maxdepth = -1
+
+# minimum percentage of integer variables that have to be fixed
+# [type: real, advanced: FALSE, range: [0,1], default: 0.65]
+heuristics/vbounds/minintfixingrate = 0.65
+
+# minimum percentage of variables that have to be fixed within sub-SCIP (integer and continuous)
+# [type: real, advanced: FALSE, range: [0,1], default: 0.65]
+heuristics/vbounds/minmipfixingrate = 0.65
+
+# maximum number of nodes to regard in the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 5000]
+heuristics/vbounds/maxnodes = 5000
+
+# number of nodes added to the contingent of the total nodes
+# [type: longint, advanced: FALSE, range: [0,9223372036854775807], default: 500]
+heuristics/vbounds/nodesofs = 500
+
+# minimum number of nodes required to start the subproblem
+# [type: longint, advanced: TRUE, range: [0,9223372036854775807], default: 500]
+heuristics/vbounds/minnodes = 500
+
+# contingent of sub problem nodes in relation to the number of nodes of the original problem
+# [type: real, advanced: FALSE, range: [0,1], default: 0.1]
+heuristics/vbounds/nodesquot = 0.1
+
+# factor by which vbounds heuristic should at least improve the incumbent
+# [type: real, advanced: TRUE, range: [0,1], default: 0.01]
+heuristics/vbounds/minimprove = 0.01
+
+# maximum number of propagation rounds during probing (-1 infinity)
+# [type: int, advanced: TRUE, range: [-1,536870911], default: 2]
+heuristics/vbounds/maxproprounds = 2
+
+# should all active cuts from cutpool be copied to constraints in subproblem?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/vbounds/copycuts = TRUE
+
+# should more variables be fixed based on variable locks if the fixing rate was not reached?
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/vbounds/uselockfixings = FALSE
+
+# maximum number of backtracks during the fixing process
+# [type: int, advanced: TRUE, range: [-1,536870911], default: 10]
+heuristics/vbounds/maxbacktracks = 10
+
+# which variants of the vbounds heuristic that try to stay feasible should be called? (0: off, 1: w/o looking at obj, 2: only fix to best bound, 4: only fix to worst bound
+# [type: int, advanced: TRUE, range: [0,7], default: 6]
+heuristics/vbounds/feasvariant = 6
+
+# which tightening variants of the vbounds heuristic should be called? (0: off, 1: w/o looking at obj, 2: only fix to best bound, 4: only fix to worst bound
+# [type: int, advanced: TRUE, range: [0,7], default: 7]
+heuristics/vbounds/tightenvariant = 7
+
+# priority of heuristic <veclendiving>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -1003100]
+heuristics/veclendiving/priority = -1003100
+
+# frequency for calling primal heuristic <veclendiving> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 10]
+heuristics/veclendiving/freq = 10
+
+# frequency offset for calling primal heuristic <veclendiving>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 4]
+heuristics/veclendiving/freqofs = 4
+
+# maximal depth level to call primal heuristic <veclendiving> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/veclendiving/maxdepth = -1
+
+# minimal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 0]
+heuristics/veclendiving/minreldepth = 0
+
+# maximal relative depth to start diving
+# [type: real, advanced: TRUE, range: [0,1], default: 1]
+heuristics/veclendiving/maxreldepth = 1
+
+# maximal fraction of diving LP iterations compared to node LP iterations
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.05]
+heuristics/veclendiving/maxlpiterquot = 0.05
+
+# additional number of allowed LP iterations
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 1000]
+heuristics/veclendiving/maxlpiterofs = 1000
+
+# maximal quotient (curlowerbound - lowerbound)/(cutoffbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.8]
+heuristics/veclendiving/maxdiveubquot = 0.8
+
+# maximal quotient (curlowerbound - lowerbound)/(avglowerbound - lowerbound) where diving is performed (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/veclendiving/maxdiveavgquot = 0
+
+# maximal UBQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1], default: 0.1]
+heuristics/veclendiving/maxdiveubquotnosol = 0.1
+
+# maximal AVGQUOT when no solution was found yet (0.0: no limit)
+# [type: real, advanced: TRUE, range: [0,1.79769313486232e+308], default: 0]
+heuristics/veclendiving/maxdiveavgquotnosol = 0
+
+# use one level of backtracking if infeasibility is encountered?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/veclendiving/backtrack = TRUE
+
+# percentage of immediate domain changes during probing to trigger LP resolve
+# [type: real, advanced: FALSE, range: [0,1.79769313486232e+308], default: 0.15]
+heuristics/veclendiving/lpresolvedomchgquot = 0.15
+
+# LP solve frequency for diving heuristics (0: only after enough domain changes have been found)
+# [type: int, advanced: FALSE, range: [0,2147483647], default: 0]
+heuristics/veclendiving/lpsolvefreq = 0
+
+# should only LP branching candidates be considered instead of the slower but more general constraint handler diving variable selection?
+# [type: bool, advanced: FALSE, range: {TRUE,FALSE}, default: FALSE]
+heuristics/veclendiving/onlylpbranchcands = FALSE
+
+# priority of heuristic <zirounding>
+# [type: int, advanced: TRUE, range: [-536870912,536870911], default: -500]
+heuristics/zirounding/priority = -500
+
+# frequency for calling primal heuristic <zirounding> (-1: never, 0: only at depth freqofs)
+# [type: int, advanced: FALSE, range: [-1,1073741822], default: 1]
+heuristics/zirounding/freq = 1
+
+# frequency offset for calling primal heuristic <zirounding>
+# [type: int, advanced: FALSE, range: [0,1073741822], default: 0]
+heuristics/zirounding/freqofs = 0
+
+# maximal depth level to call primal heuristic <zirounding> (-1: no limit)
+# [type: int, advanced: TRUE, range: [-1,1073741822], default: -1]
+heuristics/zirounding/maxdepth = -1
+
+# determines maximum number of rounding loops
+# [type: int, advanced: TRUE, range: [-1,2147483647], default: 2]
+heuristics/zirounding/maxroundingloops = 2
+
+# flag to determine if Zirounding is deactivated after a certain percentage of unsuccessful calls
+# [type: bool, advanced: TRUE, range: {TRUE,FALSE}, default: TRUE]
+heuristics/zirounding/stopziround = TRUE
+
+# if percentage of found solutions falls below this parameter, Zirounding will be deactivated
+# [type: real, advanced: TRUE, range: [0,1], default: 0.02]
+heuristics/zirounding/stoppercentage = 0.02
+
+# determines the minimum number of calls before percentage-based deactivation of Zirounding is applied
+# [type: int, advanced: TRUE, range: [1,2147483647], default: 1000]
+heuristics/zirounding/minstopncalls = 1000
+

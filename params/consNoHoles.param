@@ -1,0 +1,3 @@
+# SCIP version 9.1.0
+
+constraints/holeparity/sepafreq = -1
