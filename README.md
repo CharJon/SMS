@@ -4,7 +4,7 @@
 
 ### Solving MaxCut to Optimality
 
-The main goal of this project is to solve the MaxCut problem to optimality.
+The main goal of this project is to solve the Maximum Cut Problem (MaxCut for short) to proven optimality.
 
 ### Authors
 
@@ -23,8 +23,6 @@ Contributors who worked as student assistants on this project (in alphabetical o
 All but one dependency of this project are manged by git (via submodules).
 Only SCIP needs to be "installed". The easiest way to make SCIP available on your machine is using one of the "
 installers" ZIB offers for download here: https://scipopt.org/index.php#download.
-For linux e.g. download the "SCIPOptSuite-8.0.0-Linux-ubuntu.sh" or "SCIPOptSuite-8.0.0-Linux-debian.sh" run it and it
-will ask you where to extract all files to. When building cmake will find SCIP now.
 
 ## Building
 
