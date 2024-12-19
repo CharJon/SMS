@@ -6,46 +6,59 @@
 
 #include "benchmark/benchmark.h"
 
-static void cacheBench(benchmark::State &s) {
-    int bytes = 1 << s.range(0);
-    int count = (bytes / sizeof(int)) / 2;
+template <typename T>
+struct Edge
+{
+    T u;
+    T v;
+    double weight;
+};
+
+template <typename T>
+static void cacheBench(benchmark::State& s)
+{
     bool random = s.range(1);
 
-    // First create an instance of an engine.
-    std::random_device rnd_device;
-    // Specify the engine and distribution.
-    std::mt19937 mersenne_engine{rnd_device()}; // Generates random integers
+    int numElements = 1 << s.range(0); //bytes / sizeof(Edge<T>);
+    int64_t bytes = numElements * sizeof(Edge<T>);
 
-    std::uniform_int_distribution<int> dist{std::numeric_limits<int>::min(), std::numeric_limits<int>::max()};
-    auto gen = [&dist, &mersenne_engine]() { return dist(mersenne_engine); };
-
-    std::vector<int> v(count);
-    std::generate(begin(v), end(v), gen);
-
-    std::vector<int> indices(count);
-    if (random) {
-        std::uniform_int_distribution<int> dist_indices{0, count};
-        auto gen_indices = [&dist_indices, &mersenne_engine]() { return dist_indices(mersenne_engine); };
-        std::generate(begin(indices), end(indices), gen_indices);
-    } else {
-        for (int i = 0; i < count; i++) {
-            indices[i] = i;
-        }
+    std::vector<T> ids(numElements);
+    std::iota(ids.begin(), ids.end(), 0); // Fill with 0, 1, ..., numElements-1
+    if (random)
+    {
+        std::mt19937 mersenne_engine(100); // Generates random integers
+        std::shuffle(ids.begin(), ids.end(), mersenne_engine);
     }
 
-    for (auto _ : s) {
+    std::vector<Edge<T>> edges(numElements);
+    for (T i = 0; i < numElements - 1; ++i)
+    {
+        auto from = ids[i];
+        auto to = ids[i + 1];
+        edges[from] = Edge<T>(from, to, i);
+    }
+    auto last = ids.back();
+    edges[last] = Edge<T>(last, -1, 0);
+
+    for (auto _ : s)
+    {
         uint64_t sum = 0;
-        for (int i : indices)
-            sum += v[i];
+        auto next = ids.front();
+        while (next != -1)
+        {
+            sum += edges[next].weight;
+            next = edges[next].v;
+        }
         benchmark::DoNotOptimize(sum);
     }
 
-    s.SetBytesProcessed(long(s.iterations()) * long(bytes));
+    //s.SetBytesProcessed(static_cast<long>(s.iterations()) * static_cast<long>(bytes));
     s.SetLabel(std::to_string(bytes / 1024) + "kB");
 }
 
 // Register the function as a benchmark
-BENCHMARK(cacheBench)->ArgsProduct({benchmark::CreateDenseRange(17, 25, 1), {0, 1}});
+BENCHMARK(cacheBench<int32_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {0, 1}});
+BENCHMARK(cacheBench<int64_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {0, 1}});
 
 // Run the benchmark
 BENCHMARK_MAIN();
