@@ -57,8 +57,10 @@ static void cacheBench(benchmark::State& s)
 }
 
 // Register the function as a benchmark
-BENCHMARK(cacheBench<int32_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {0, 1}});
-BENCHMARK(cacheBench<int64_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {0, 1}});
+BENCHMARK(cacheBench<int32_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {0}});
+BENCHMARK(cacheBench<int64_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {0}});
+BENCHMARK(cacheBench<int32_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {1}});
+BENCHMARK(cacheBench<int64_t>)->ArgsProduct({benchmark::CreateDenseRange(10, 20, 1), {1}});
 
 // Run the benchmark
 BENCHMARK_MAIN();
