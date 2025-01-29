@@ -7,6 +7,7 @@
 #include "nlohmann/json.hpp"
 
 #include "sms/io/io.hpp"
+#include <cstdint>
 
 namespace sms {
 /*
