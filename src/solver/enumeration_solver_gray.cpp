@@ -28,10 +28,10 @@ void EnumerationSolverGray::run() {
 
 double EnumerationSolverGray::calcOffset(partition_t currentPartition, partition_t vertexToFlip) const {
     double offset = 0;
-    auto vertexPart = (currentPartition >> vertexToFlip) & 1UL;
+    const auto vertexPart = (currentPartition >> vertexToFlip) & 1UL;
     for (auto [neighbor, weight] : graph_.weightNeighborRange(vertexToFlip)) {
-        auto otherPart = (currentPartition >> neighbor) & 1UL;
-        int factor = 1 - (2 * (vertexPart ^ otherPart));
+        const auto otherPart = (currentPartition >> neighbor) & 1UL;
+        const auto factor = static_cast<double>(1 - (2 * (vertexPart ^ otherPart)));
         offset += factor * weight;
     }
     return offset;
