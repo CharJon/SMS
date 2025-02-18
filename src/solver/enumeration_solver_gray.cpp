@@ -31,7 +31,7 @@ double EnumerationSolverGray::calcOffset(partition_t currentPartition, partition
     const auto vertexPart = (currentPartition >> vertexToFlip) & 1UL;
     for (auto [neighbor, weight] : graph_.weightNeighborRange(vertexToFlip)) {
         const auto otherPart = (currentPartition >> neighbor) & 1UL;
-        const auto factor = static_cast<double>(1 - (2 * (vertexPart ^ otherPart)));
+        const int factor = 1 - static_cast<int>(2 * (vertexPart ^ otherPart));
         offset += factor * weight;
     }
     return offset;
