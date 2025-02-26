@@ -16,7 +16,7 @@ Contributors who worked as student assistants on this project (in alphabetical o
 - Claude Jordan
 - Michael Kaibel
 - [Franziska Kehe](https://github.com/fkehe)
-- Konstantinos Papadopoulos
+- [Konstantinos Papadopoulos](https://github.com/FreestyleBuild)
 
 ## External dependencies
 
