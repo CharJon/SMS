@@ -8,6 +8,16 @@ sms_add_test(enumeration_solver_gtest basic enumeration_solver_gtest.cpp
         ../../graph/graphs.cpp
 )
 
+sms_add_test(enumeration_solver_gray_gtest basic enumeration_solver_gray_gtest.cpp
+        ../../io/io.cpp
+        ../../graph/graphs.cpp
+        ../../graph/small_ccs.cpp
+        ../../instance/mc_solution.cpp
+        ../../solver/enumeration_solver_gray.cpp
+        ../../solver/abstract_solver.cpp
+        ../../graph/graphs.cpp
+)
+
 sms_add_test(gurobi_quadratic_solver_gtest gurobi
         gurobi_quadratic_solver_gtest.cpp
         ../../io/io.cpp

@@ -4,6 +4,9 @@ sms_add_test(active_elements_gtest basic active_elements_gtest.cpp
 sms_add_test(chrono_io_gtest basic chrono_io_gtest.cpp
 )
 
+sms_add_test(gray_code_gtest basic gray_code_gtest.cpp
+)
+
 sms_add_test(math_gtest basic math_gtest.cpp
 )
 

@@ -69,7 +69,8 @@ TEST(Enumeration, SolvingComplex) {
     ASSERT_EQ(solver.bestSolutionValue(), 59);
 }
 
-class EnumerationParameterizedTestFixture : public ::testing::TestWithParam<int> {};
+class EnumerationParameterizedTestFixture : public ::testing::TestWithParam<int> {
+};
 
 TEST_P(EnumerationParameterizedTestFixture, SolvingCliques) {
     const int dim = GetParam();
@@ -80,7 +81,8 @@ TEST_P(EnumerationParameterizedTestFixture, SolvingCliques) {
     ASSERT_EQ(solver.bestSolutionValue(), (dim / 2) * ((dim + 1) / 2));
 }
 
-INSTANTIATE_TEST_SUITE_P(AllSizes, EnumerationParameterizedTestFixture, ::testing::Values(2, 5, 10, 15, 16, 17, 18));
+INSTANTIATE_TEST_SUITE_P(AllSizes, EnumerationParameterizedTestFixture,
+                         ::testing::Values(2, 5, 10, 15, 16, 17, 18, 19, 20, 21));
 
 TEST(Enumeration, SolvingComplexParallel) {
     NetworKit::Graph g = mcFileToGraph("test/data/easy_20_vertices.mc");
