@@ -1,0 +1,47 @@
+name: basic-workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ubuntu-build:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        build_type: [ Debug, Release ]
+    env:
+      SCIP_INSTALL_DIR: /opt/SCIPOptSuite-9.2.1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies (Ubuntu)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libopenblas-dev libopenblas0 liblapack3 gfortran libtbb-dev libcliquer1 libgmp10 libboost-program-options-dev libboost-serialization-dev libmetis5 patchelf
+
+      - name: Install SCIP (Ubuntu)
+        run: |
+          wget --no-verbose https://www.scipopt.org/download/release/SCIPOptSuite-9.2.1-Linux-ubuntu24.sh
+          chmod +x SCIPOptSuite-9.2.1-Linux-ubuntu24.sh
+          ./SCIPOptSuite-9.2.1-Linux-ubuntu24.sh --skip-license --prefix=${{ env.SCIP_INSTALL_DIR }}
+
+      - name: Configure CMake (Ubuntu - ${{ matrix.build_type }})
+        run: |
+          mkdir -p ${{ github.workspace }}/build-${{ matrix.build_type }}
+          cmake -B ${{ github.workspace }}/build-${{ matrix.build_type }} \
+                -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+                -DSCIP_DIR=${{ env.SCIP_INSTALL_DIR }}
+
+      - name: Build project (Ubuntu - ${{ matrix.build_type }})
+        run: |
+          cmake --build ${{ github.workspace }}/build-${{ matrix.build_type }} --config ${{ matrix.build_type }} -j $(nproc)
+
+      - name: Run tests (Ubuntu - ${{ matrix.build_type }})
+        working-directory: ${{ github.workspace }}/build-${{ matrix.build_type }}
+        run: ctest -C ${{ matrix.build_type }}
