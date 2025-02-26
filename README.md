@@ -15,7 +15,7 @@ Contributors who worked as student assistants on this project (in alphabetical o
 - [Mohammed Ghannam](https://github.com/mmghannam)
 - Claude Jordan
 - Michael Kaibel
-- Franziska Kehe
+- [Franziska Kehe](https://github.com/fkehe)
 - Konstantinos Papadopoulos
 
 ## External dependencies
