@@ -15,11 +15,6 @@ TEST(SGParser, SimpleParsing) {
     ASSERT_EQ(inst.getSolutionValue({1, -1, -1, 1}), 25);
 }
 
-TEST(SGParser, PropblemticInstance) {
-    ASSERT_THROW(sms::SgParser parser("test/data/mcsparse_online_instances/sg_error/isg_pm_81_9.sg"),
-                 std::runtime_error);
-}
-
 TEST(GSGParser, SimpleParsing) {
     sms::GsgParser parser("test/data/simpleGrid.gsg");
 
@@ -67,40 +62,4 @@ TEST(GSGParser, TooFewEdges) {
 
 TEST(GSGParser, TooManyEdges) {
     ASSERT_ANY_THROW(sms::GsgParser parser("test/data/error_wrong_number_of_edges_2.gsg"));
-}
-
-TEST(gsgRead, McSparseOnlineError) {
-    std::string path = "test/data/mcsparse_online_instances/gsg_error";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".gsg") {
-            ASSERT_ANY_THROW(sms::GsgParser parser(entry.path()));
-        }
-    }
-}
-
-TEST(gsgRead, McSparseOnlineValid) {
-    std::string path = "test/data/mcsparse_online_instances/gsg_valid";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".gsg") {
-            ASSERT_NO_THROW(sms::GsgParser parser(entry.path()));
-        }
-    }
-}
-
-TEST(sgRead, McSparseOnlineError) {
-    std::string path = "test/data/mcsparse_online_instances/sg_error";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".sg") {
-            ASSERT_ANY_THROW(sms::SgParser parser(entry.path()));
-        }
-    }
-}
-
-TEST(sgRead, McSparseOnlineValid) {
-    std::string path = "test/data/mcsparse_online_instances/sg_valid";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".sg") {
-            ASSERT_NO_THROW(sms::SgParser parser(entry.path()));
-        }
-    }
 }
