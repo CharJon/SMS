@@ -45,3 +45,34 @@ jobs:
       - name: Run tests (Ubuntu - ${{ matrix.build_type }})
         working-directory: ${{ github.workspace }}/build-${{ matrix.build_type }}
         run: ctest -C ${{ matrix.build_type }}
+
+  macos-build:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        build_type: [ Debug, Release ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install SCIP (macOS)
+        run: |
+          brew update
+          brew install SCIP@9.2.1
+
+      - name: Configure CMake (macOS - ${{ matrix.build_type }})
+        run: |
+          mkdir -p ${{ github.workspace }}/build-${{ matrix.build_type }}
+          cmake -B ${{ github.workspace }}/build-${{ matrix.build_type }} \
+                -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+                -DSCIP_DIR=${{ env.SCIP_INSTALL_DIR }}
+
+      - name: Build project (macOS - ${{ matrix.build_type }})
+        run: |
+          cmake --build ${{ github.workspace }}/build-${{ matrix.build_type }} --config ${{ matrix.build_type }} -j $(nproc)
+
+      - name: Run tests (macOS - ${{ matrix.build_type }})
+        working-directory: ${{ github.workspace }}/build-${{ matrix.build_type }}
+        run: ctest -C ${{ matrix.build_type }}
