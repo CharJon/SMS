@@ -1,0 +1,8 @@
+# Some comments
+# for testing
+# this file has three nodes, best solution at 111 with value -4
+3 4
+1 1 1
+1 2 -3
+2 2 2
+3 2 -4
