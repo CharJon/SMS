@@ -13,7 +13,7 @@ Authors: The main author of this project is **Jonas Charfreitag**.
 Contributors who worked as student assistants on this project (in alphabetical order):
 
 - [Mohammed Ghannam](https://github.com/mmghannam)
-- Claude Jordan
+- [Claude Jordan](https://github.com/cljord)
 - Michael Kaibel
 - [Franziska Kehe](https://github.com/fkehe)
 - [Konstantinos Papadopoulos](https://github.com/FreestyleBuild)
