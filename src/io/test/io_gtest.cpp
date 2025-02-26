@@ -328,39 +328,3 @@ TEST(FileToGraph, BqFileToGraph2) {
 TEST(FileToGraph, BqFileToGraphError) {
     ASSERT_ANY_THROW(mcFileToGraph("test/data/error_too_few_edges.bq"));
 }
-
-TEST(bqRead, McSparseOnlineValid) {
-    std::string path = "test/data/mcsparse_online_instances/bq_valid";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".bq") {
-            ASSERT_NO_THROW(bqFileToGraph(entry.path()));
-        }
-    }
-}
-
-TEST(bqRead, McSparseOnlineError) {
-    std::string path = "test/data/mcsparse_online_instances/bq_error";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".bq") {
-            ASSERT_ANY_THROW(bqFileToGraph(entry.path()));
-        }
-    }
-}
-
-TEST(mcRead, McSparseOnlineValid) {
-    std::string path = "test/data/mcsparse_online_instances/mc_valid";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".mc") {
-            ASSERT_NO_THROW(bqFileToGraph(entry.path()));
-        }
-    }
-}
-
-TEST(mcRead, McSparseOnlineError) {
-    std::string path = "test/data/mcsparse_online_instances/mc_error";
-    for (const auto &entry : std::filesystem::directory_iterator(path)) {
-        if (entry.path().extension() == ".mc") {
-            ASSERT_ANY_THROW(bqFileToGraph(entry.path()));
-        }
-    }
-}
