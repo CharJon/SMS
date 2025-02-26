@@ -60,6 +60,7 @@ jobs:
       - name: Install SCIP (macOS)
         run: |
           brew update
+          brew install libomp
           brew install scip@9.2.1
 
       - name: Configure CMake (macOS - ${{ matrix.build_type }})
