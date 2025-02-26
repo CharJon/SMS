@@ -37,10 +37,6 @@ double EnumerationSolverGray::calcOffset(partition_t currentPartition, partition
     return offset;
 }
 
-void EnumerationSolverGray::run(const std::vector<NetworKit::node> &, const std::vector<u_int8_t> &) {
-    throw std::runtime_error("Not implemented");
-}
-
 void EnumerationSolverGray::solveNoFixed() {
     partition_t currentPartition = 0;
     bestPartition_ = currentPartition;
@@ -59,10 +55,6 @@ void EnumerationSolverGray::solveNoFixed() {
             bestValue_ = currentValue;
         }
     }
-}
-
-void EnumerationSolverGray::solveFixed() {
-    throw std::runtime_error("Not implemented");
 }
 
 std::vector<bool> EnumerationSolverGray::getBestSolution() const {

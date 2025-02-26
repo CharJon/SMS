@@ -24,8 +24,6 @@ public:
 
     void run() override;
 
-    void run(const std::vector<NetworKit::node> & /*fixedNodes*/, const std::vector<u_int8_t> & /*fixedValues*/);
-
     std::vector<bool> getBestSolution() const override;
 
     bool partitionInBestSolution(NetworKit::node u) const;
@@ -34,8 +32,6 @@ private:
     partition_t bestPartition_ = 0;
 
     void solveNoFixed();
-
-    void solveFixed();
 
     double calcOffset(partition_t currentPartition, partition_t vertexToFlip) const;
 };
