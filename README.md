@@ -12,7 +12,7 @@ Authors: The main author of this project is **Jonas Charfreitag**.
 
 Contributors who worked as student assistants on this project (in alphabetical order):
 
-- Mohammed Ghannam
+- [Mohammed Ghannam](https://github.com/mmghannam)
 - Claude Jordan
 - Michael Kaibel
 - Franziska Kehe
