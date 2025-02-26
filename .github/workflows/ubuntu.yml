@@ -31,7 +31,7 @@ jobs:
 
       - name: Install scip@9.2.1
         run: |
-          wget https://www.scipopt.org/download/release/SCIPOptSuite-9.2.1-Linux-ubuntu24.sh
+          wget --no-verbose https://www.scipopt.org/download/release/SCIPOptSuite-9.2.1-Linux-ubuntu24.sh
           chmod +x SCIPOptSuite-9.2.1-Linux-ubuntu24.sh
           ./SCIPOptSuite-9.2.1-Linux-ubuntu24.sh --skip-license --prefix=${{ env.SCIP_INSTALL_DIR }}
 
