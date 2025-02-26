@@ -27,7 +27,7 @@ jobs:
       - name: install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libopenblas0 liblapack3 gfortran libtbb-dev libcliquer1 libgmp10 libboost-program-options-dev libboost-serialization-dev libmetis5 patchelf
+          sudo apt-get install -y libopenblas-dev libopenblas0 liblapack3 gfortran libtbb-dev libcliquer1 libgmp10 libboost-program-options-dev libboost-serialization-dev libmetis5 patchelf
 
       - name: Install scip@9.2.1
         run: |
