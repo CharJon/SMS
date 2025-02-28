@@ -12,18 +12,29 @@
 
 namespace sms {
 
+RuleFlag operator~(const RuleFlag operand) {
+    return static_cast<RuleFlag>(~to_underlying_type(operand));
+}
+
+RuleFlag operator|(const RuleFlag lhs, const RuleFlag rhs) {
+    return static_cast<RuleFlag>(to_underlying_type(lhs) | to_underlying_type(rhs));
+}
+
+RuleFlag operator&(const RuleFlag lhs, const RuleFlag rhs) {
+    return static_cast<RuleFlag>(to_underlying_type(lhs) & to_underlying_type(rhs));
+}
+
 /*
  * Extracts the rule with the highest priority from a given RuleFlag.
  */
-RuleFlag highestPriorityRule(RuleFlag rf) {
-    // MightDo: This can be done faster, via a lookup table.
-    uint16_t rfCopy = rf;
-    int numShifts = 0;
-    while (rfCopy > 1) {
-        rfCopy = rfCopy >> 1;
-        numShifts++;
-    }
-    return static_cast<RuleFlag>(rf & (1 << numShifts));
+RuleFlag highestPriorityRule(const RuleFlag rf) {
+    const auto leadZero = std::countl_zero(to_underlying_type(rf));
+    const auto numShifts = std::max(15 - leadZero, 0);
+    return static_cast<RuleFlag>(static_cast<std::underlying_type_t<RuleFlag>>(1) << numShifts);
+}
+
+std::underlying_type_t<RuleFlag> to_underlying_type(RuleFlag rf) {
+    return static_cast<std::underlying_type_t<RuleFlag>>(rf);
 }
 
 NetworKit::edgeweight absOutWeight(const NetworKit::Graph &graph, NetworKit::node u) {
@@ -97,6 +108,9 @@ void DataReducerMC::initRun() {
         RuleFlag rules = getDegreeFlag(node);
         rules = static_cast<RuleFlag>(rules | getNonDegreeFlags(node));
         vertexStatus_[node] = rules;
+        if (graph_.degree(node) == 0) {
+            assert(vertexStatus_[node] & RuleFlag::kDegreeZero);
+        }
         vertexHeap_.push(node);
     }
     assert(vertexHeap_.sanity_check());
@@ -135,6 +149,16 @@ void DataReducerMC::run() {
     }
     for (auto e : edgesToRemove) {
         graph_.removeEdge(e.u, e.v);
+
+        if (graph_.degree(e.u) == 0) {
+            vertexStatus_[e.u] = RuleFlag::kDegreeZero;
+            vertexHeap_.update(e.u);
+        }
+
+        if (graph_.degree(e.v) == 0) {
+            vertexStatus_[e.u] = RuleFlag::kDegreeZero;
+            vertexHeap_.update(e.u);
+        }
     }
 
     int numReductions = emphasis_; // if emphasis <= 0, no reductions are performed
@@ -178,17 +202,20 @@ int DataReducerMC::nextNodeAggregation() {
         RuleFlag highestActive = highestPriorityRule(vertexStatus_[curNode]);
 #ifndef NDEBUG
         auto nodeRange = graph_.nodeRange();
+        for (auto u : nodeRange) {
+            assert(highestActive == RuleFlag::kDegreeZero || graph_.degree(u) > 0);
+        }
 #endif
-        assert(highestActive == kDegreeZero
+        assert(highestActive == RuleFlag::kDegreeZero
                || std::all_of(nodeRange.begin(), nodeRange.end(), [&](auto v) { return graph_.degree(v) > 0; }));
         int numRemovedVertices = 0;
 
         // First check if we enter non weight stable phase
-        if (!separateCliquesChecked_ && (highestActive < kWeightStableClique)) {
+        if (!separateCliquesChecked_ && (highestActive < RuleFlag::kWeightStableClique)) {
             separateCliquesChecked_ = true;
             return removeSeparatedCliques();
         }
-        if (!linearTimeSolveChecked_ && (highestActive < kWeightStableClique) && useFastSolver_) {
+        if (!linearTimeSolveChecked_ && (highestActive < RuleFlag::kWeightStableClique) && useFastSolver_) {
             linearTimeSolveChecked_ = true;
             auto compGraph = compactGraph(graph_);
             SpecialStructuresSolver solver(compGraph.compactGraph);
@@ -635,7 +662,7 @@ int DataReducerMC::cliqueReductionCore(NetworKit::node u, unsigned int cliqueSiz
         }
         for (auto neighbor : graph_.neighborRange(ext1)) {
             if (graph_.degree(neighbor) == 2)
-                activateRule(neighbor, kWeightStableThreePath);
+                activateRule(neighbor, RuleFlag::kWeightStableClique);
         }
     }
 
@@ -702,7 +729,7 @@ int DataReducerMC::nearCliqueReductionCore(NetworKit::node u, NetworKit::node pa
         }
         for (auto neighbor : graph_.neighborRange(ext1)) {
             if (graph_.degree(neighbor) == 2)
-                activateRule(neighbor, kWeightStableThreePath);
+                activateRule(neighbor, RuleFlag::kWeightStableThreePath);
         }
     }
 
@@ -1196,26 +1223,26 @@ bool DataReducerMC::neighborhoodIsClique(NetworKit::node v, bool degreesChecked)
 
 void DataReducerMC::smartActivateAll(NetworKit::node u) {
     RuleFlag rules = getDegreeFlag(u);
-    rules = static_cast<RuleFlag>(rules | getNonDegreeFlags(u));
-    vertexStatus_[u] = static_cast<RuleFlag>(vertexStatus_[u] | rules);
+    rules = rules | getNonDegreeFlags(u);
+    vertexStatus_[u] = vertexStatus_[u] | rules;
     vertexHeap_.update(u);
 }
 
 RuleFlag DataReducerMC::getDegreeFlag(NetworKit::node u) const {
-    auto rules = kNONE;
+    auto rules = RuleFlag::kNONE;
     switch (graph_.degree(u)) {
         case 0:
-            rules = static_cast<RuleFlag>(rules | kDegreeZero);
+            rules = rules | RuleFlag::kDegreeZero;
             break;
         case 1:
-            rules = static_cast<RuleFlag>(rules | kDegreeOne);
+            rules = rules | RuleFlag::kDegreeOne;
             break;
         case 2:
-            rules = static_cast<RuleFlag>(rules | kDegreeTwo);
+            rules = rules | RuleFlag::kDegreeTwo;
             break;
         case 3:
             if (useDegreeThree_) {
-                rules = static_cast<RuleFlag>(rules | kDegreeThree);
+                rules = rules | RuleFlag::kDegreeThree;
             }
             break;
         default:; // do nothing
@@ -1224,15 +1251,15 @@ RuleFlag DataReducerMC::getDegreeFlag(NetworKit::node u) const {
 }
 
 RuleFlag DataReducerMC::getNonDegreeFlags(NetworKit::node u) const {
-    auto rules = kNONE;
+    auto rules = RuleFlag::kNONE;
     if (weightOneNeighborhood_[u]) {
-        rules = static_cast<RuleFlag>(rules | kWeightStableThreePath);
-        rules = static_cast<RuleFlag>(rules | kWeightStableClique);
+        rules = rules | RuleFlag::kWeightStableThreePath;
+        rules = rules | RuleFlag::kWeightStableClique;
     } else {
-        rules = static_cast<RuleFlag>(rules | kDominatingEdge);
-        rules = static_cast<RuleFlag>(rules | kTriangle);
+        rules = rules | RuleFlag::kDominatingEdge;
+        rules = rules | RuleFlag::kTriangle;
     }
-    rules = static_cast<RuleFlag>(rules | kSimilarNeighborhood);
+    rules = rules | RuleFlag::kSimilarNeighborhood;
     return rules;
 }
 
@@ -1248,7 +1275,7 @@ int DataReducerMC::similarNeighborhoodApplication(NetworKit::node u) {
 
     for (auto [v, weight] : graph_.weightNeighborRange(u)) {
         // the check will be performed the other way around later
-        if (!isRuleActive(v, kSimilarNeighborhood)) {
+        if (!isRuleActive(v, RuleFlag::kSimilarNeighborhood)) {
             auto alpha = neighborhoodAlphaMarksSet(graph_, u, v, true, neighborWeights2_);
             if (alpha > 0.0 && weight < 0.0) {
                 posAlphaWithEdge_ += 1;
@@ -1300,8 +1327,7 @@ int DataReducerMC::removeSeparatedCliques() {
     // loop over each bucket
     // for each one it is guaranteed that the nodes are in the same clique and have the same neighbors
     for (const auto &[cliqueAndNeighborhood, clique] : buckets) {
-        if (!std::all_of(cliqueAndNeighborhood.begin(), cliqueAndNeighborhood.end(),
-                         [&touched](auto u) { return !touched[u]; }))
+        if (!std::ranges::all_of(cliqueAndNeighborhood, [&touched](auto u) { return !touched[u]; }))
             continue;
 
         // check total size of neighborhood, which for any node u is deg(u) +1 - bucketSize

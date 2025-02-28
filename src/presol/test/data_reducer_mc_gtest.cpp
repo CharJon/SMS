@@ -18,7 +18,7 @@ NetworKit::edgeweight bestSolutionFromNothing(const NetworKit::Graph &g, const s
 }
 
 TEST(DataReduction, RuleFlags) {
-    std::cout << sms::kAll << std::endl;
+    std::cout << sms::to_underlying_type(sms::RuleFlag::kAll) << std::endl;
     EXPECT_TRUE(sms::RuleFlag::kAll >= sms::RuleFlag::kDegreeZero);
 }
 

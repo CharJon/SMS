@@ -16,7 +16,7 @@ namespace sms {
  * @brief Flags for the reduction rules.
  * The higher the value the earlier the rule is checked.
  */
-enum RuleFlag : uint16_t { // NOLINT(*-enum-size)
+enum class RuleFlag : u_int16_t { // NOLINT(*-enum-size)
     kNONE = 0,
     kDegreeThree = 1 << 1, // might not delete edges
     kTriangle = 1 << 2,
@@ -31,7 +31,15 @@ enum RuleFlag : uint16_t { // NOLINT(*-enum-size)
     kAll = (kDegreeZero << 1) - 1, // set all relevant bits to one
 };
 
+RuleFlag operator~(RuleFlag lhs);
+
+RuleFlag operator|(RuleFlag lhs, RuleFlag rhs);
+
+RuleFlag operator&(RuleFlag lhs, RuleFlag rhs);
+
 RuleFlag highestPriorityRule(RuleFlag rf);
+
+std::underlying_type_t<RuleFlag> to_underlying_type(RuleFlag rf);
 
 struct NodeAggregation {
     NetworKit::node toAggregate;
@@ -203,12 +211,13 @@ public:
     int smallSeparatorApplication();
 
     void activateRule(NetworKit::node node, RuleFlag rule) {
-        vertexStatus_[node] = static_cast<RuleFlag>(vertexStatus_[node] | rule);
+        vertexStatus_[node] = (vertexStatus_[node] | rule);
         vertexHeap_.update(node);
     }
 
     void deactivateRule(NetworKit::node node, RuleFlag rule) {
-        vertexStatus_[node] = static_cast<RuleFlag>(vertexStatus_[node] & ~rule);
+        assert(std::popcount(to_underlying_type(rule)) == 1);
+        vertexStatus_[node] = (vertexStatus_[node] & ~rule);
         vertexHeap_.update(node);
     }
 
@@ -282,8 +291,8 @@ public:
 
 private:
     NetworKit::Graph graph_;
-    std::vector<sms::RuleFlag> vertexStatus_;
-    tlx::DAryAddressableIntHeap<uint32_t, 2, LargerInVector<sms::RuleFlag>> vertexHeap_;
+    std::vector<RuleFlag> vertexStatus_;
+    tlx::DAryAddressableIntHeap<uint32_t, 2, LargerInVector<RuleFlag>> vertexHeap_;
     std::vector<bool> weightOneNeighborhood_; // all incident edges have weight 1
     bool allWeightsAreOne_;
     bool separateCliquesChecked_ = false;
