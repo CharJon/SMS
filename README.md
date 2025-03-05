@@ -8,7 +8,7 @@ The main goal of this project is to solve the Maximum Cut Problem (MaxCut for sh
 
 ### Authors
 
-Authors: The main author of this project is **Jonas Charfreitag**.
+The main author of this project is [**Jonas Charfreitag**](https://github.com/CharJon)
 
 Contributors who worked as student assistants on this project (in alphabetical order):
 
