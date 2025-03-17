@@ -14,7 +14,7 @@ Contributors who worked as student assistants on this project (in alphabetical o
 
 - [Mohammed Ghannam](https://github.com/mmghannam)
 - [Claude Jordan](https://github.com/cljord)
-- Michael Kaibel
+- [Michael Kaibel](https://github.com/TheoreticalTree)
 - [Franziska Kehe](https://github.com/fkehe)
 - [Konstantinos Papadopoulos](https://github.com/FreestyleBuild)
 
