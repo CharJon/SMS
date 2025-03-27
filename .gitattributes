@@ -1,1 +1,2 @@
 *.el linguist-vendored
+*.mc linguist-vendored
